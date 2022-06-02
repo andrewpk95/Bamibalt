@@ -1,0 +1,13 @@
+{
+  "compilerOptions": { 
+    "strict": true,
+  },
+  "include": [
+    ".eslintrc.js",
+    "**/*.js",
+    "**/*.ts",
+  ],
+  "exclude": [
+    "node_modules",
+  ],
+}
