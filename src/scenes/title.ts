@@ -1,9 +1,9 @@
 import BaseScene from 'src/scenes/base';
 
-export default class GameScene extends BaseScene {
+export default class TitleScene extends BaseScene {
   constructor() {
     super({
-      key: 'GameScene',
+      key: 'TitleScene',
     });
   }
 

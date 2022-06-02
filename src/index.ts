@@ -3,6 +3,10 @@ import 'src/main.scss';
 import Phaser from 'phaser';
 import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin';
 import GameScene from 'src/scenes/game';
+import BootScene from 'src/scenes/boot';
+import LoadingScene from 'src/scenes/loading';
+import TitleScene from 'src/scenes/title';
+import ResultScene from 'src/scenes/result';
 
 function launchGame() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -18,7 +22,7 @@ function launchGame() {
         gravity: { y: 900 },
       },
     },
-    scene: [GameScene],
+    scene: [BootScene, LoadingScene, TitleScene, GameScene, ResultScene],
     plugins: {
       scene: [
         {
