@@ -1,3 +1,4 @@
+import Text from 'src/components/text';
 import BaseScene from 'src/scenes/base';
 
 export default class TitleScene extends BaseScene {
@@ -8,9 +9,11 @@ export default class TitleScene extends BaseScene {
   }
 
   create() {
-    const { width, height } = this.scale.gameSize;
-    const text = this.add.text(width / 2, height / 2, 'HELLO WORLD', {
-      fontSize: '100px',
+    const text = new Text(this, {
+      key: 'TitleScene_Title',
+      style: {
+        fontSize: '100px',
+      },
     })
       .setOrigin(0.5, 0.5);
 

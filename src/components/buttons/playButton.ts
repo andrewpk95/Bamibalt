@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import RoundRectangle from 'phaser3-rex-plugins/plugins/roundrectangle';
 import BaseButton from 'src/components/buttons/baseButton';
+import Text from 'src/components/text';
 
 type PlayButtonOptions = {
   width: number;
@@ -13,9 +14,12 @@ export default class PlayButton extends BaseButton<PlayButtonOptions> {
 
   protected createUI({ width, height }: PlayButtonOptions): Phaser.GameObjects.GameObject {
     const roundRectangle = this.rexUI.add.roundRectangle(0, 0, width, height, 5, 0xffffff);
-    const text = this.scene.add.text(0, 0, 'PLAY', {
-      fontSize: '30px',
-      color: '#000000',
+    const text = new Text(this.scene, {
+      key: 'LoadingScene_PlayButton',
+      style: {
+        fontSize: '50px',
+        color: '#000000',
+      },
     })
       .setOrigin(0.5, 0.5);
 
@@ -34,7 +38,7 @@ export default class PlayButton extends BaseButton<PlayButtonOptions> {
 
   protected onButtonUp(): void {
     this.onReset();
-    this.scene.scene.start('GameScene');
+    this.scene.scene.start('TitleScene');
   }
 
   protected onReset(): void {
