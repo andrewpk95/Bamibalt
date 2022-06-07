@@ -10,7 +10,7 @@ import TitleScene from 'src/scenes/title';
 import ResultScene from 'src/scenes/result';
 
 function launchGame() {
-  const config = {
+  const config: Phaser.Types.Core.GameConfig = {
     width: 1920,
     height: 1080,
     scale: {

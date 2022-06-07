@@ -30,15 +30,15 @@ export default class GameScene extends BaseScene {
 
   private updateCamera() {
     const camera = this.cameras.main;
-    const x = this.bamiko.x - GameSettings.camera.offsetX;
-    const y = Math.min(this.bamiko.y - GameSettings.camera.offsetY, 0);
+    const x = this.bamiko.body.position.x - GameSettings.camera.offsetX;
+    const y = Math.min(this.bamiko.body.position.y - GameSettings.camera.offsetY, 0);
 
     camera.setScroll(x, y);
   }
 
   private updateBamiko() {
-    if (this.bamiko.y > this.scale.gameSize.height) {
-      this.scene.start('ResultScene', { record: this.bamiko.x });
+    if (this.bamiko.body.position.y > this.scale.gameSize.height) {
+      this.scene.start('ResultScene', { record: this.bamiko.body.position.x });
     }
   }
 }
