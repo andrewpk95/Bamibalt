@@ -21,11 +21,32 @@ export default class GameScene extends BaseScene {
 
     this.bamiko = bamiko;
     this.obstacleGenerator = obstacleGenerator;
+
+    this.bamiko.on('damagedeath', this.handleDamageDeath, this);
+    this.bamiko.on('falldeath', this.handleFallDeath, this);
+
+    this.events.once('shutdown', () => {
+      this.bamiko.off('damagedeath', this.handleDamageDeath);
+      this.bamiko.off('falldeath', this.handleFallDeath);
+    });
+  }
+
+  private handleDamageDeath() {
+    console.warn('caught!');
+    this.gameOver();
+  }
+
+  private handleFallDeath() {
+    console.warn('fell!');
+    this.gameOver();
+  }
+
+  private gameOver() {
+    this.scene.start('ResultScene', { record: Math.round(this.bamiko.body.position.x) });
   }
 
   update() {
     this.updateCamera();
-    this.updateBamiko();
   }
 
   private updateCamera() {
@@ -34,11 +55,5 @@ export default class GameScene extends BaseScene {
     const y = Math.min(this.bamiko.body.position.y - GameSettings.camera.offsetY, 0);
 
     camera.setScroll(x, y);
-  }
-
-  private updateBamiko() {
-    if (this.bamiko.body.position.y > this.scale.gameSize.height) {
-      this.scene.start('ResultScene', { record: this.bamiko.body.position.x });
-    }
   }
 }

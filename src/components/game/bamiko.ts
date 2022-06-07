@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import GameSettings from 'src/assets/settings';
 
 export default class Bamiko extends Phaser.GameObjects.Rectangle {
+  private isDamaged: boolean = false;
   private hasDoubleJump: boolean = true;
 
   public get isGrounded() {
@@ -17,7 +18,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
 
-    this.body.velocity.x = 300;
+    this.body.velocity.x = 700;
     this.scene.input.on('pointerdown', this.jump, this);
     this.scene.events.on('update', this.update, this);
   }
@@ -31,7 +32,21 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     }
   }
 
+  public takeDamage() {
+    if (this.isDamaged) {
+      this.emit('damagedeath');
+      return;
+    }
+    console.warn('ouch');
+    this.isDamaged = true;
+    this.emit('damaged');
+  }
+
   update(): void {
+    if (this.body.position.y > this.scene.scale.gameSize.height) {
+      this.emit('falldeath');
+      return;
+    }
     if (this.isGrounded) {
       this.hasDoubleJump = true;
     }
