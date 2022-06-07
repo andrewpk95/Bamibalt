@@ -20,7 +20,8 @@ function launchGame() {
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 900 },
+        debug: true,
+        gravity: { y: 2000 },
       },
     },
     scene: [BootScene, LoadingScene, TitleScene, GameScene, ResultScene],
