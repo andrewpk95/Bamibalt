@@ -13,10 +13,7 @@ export default class LoadingScene extends BaseScene {
   }
 
   create() {
-    const playButton = new PlayButton(this, {
-      width: 200,
-      height: 100,
-    });
+    const playButton = new PlayButton(this);
 
     this.rexUI.add.anchor(playButton, {
       x: 'center',

@@ -4,18 +4,22 @@ import { getText, UIKey } from 'src/types/ui';
 type TextOptions = {
   x?: number;
   y?: number;
-  key: UIKey;
+  key?: UIKey;
+  string?: string;
   style?: Phaser.Types.GameObjects.Text.TextStyle;
 };
 
-export default class Text extends Phaser.GameObjects.Text {
+export default class TextComponent extends Phaser.GameObjects.Text {
   constructor(scene: Phaser.Scene, {
     x = 0,
     y = 0,
     key,
+    string = '',
     style,
   }: TextOptions) {
-    super(scene, x, y, getText(key), {
+    const text = key ? getText(key) : string;
+
+    super(scene, x, y, text, {
       fontFamily: 'Black Han Sans',
       fontStyle: '400',
       ...style,

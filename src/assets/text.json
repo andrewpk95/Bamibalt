@@ -4,5 +4,17 @@
     },
     "TitleScene_Title": {
         "text": "BAMIBALT"
+    },
+    "TitleScene_Start": {
+        "text": "시작"
+    },
+    "TitleScene_Description": {
+        "text": "설명"
+    },
+    "ResultScene_Retry": {
+        "text": "다시하기"
+    },
+    "ResultScene_Title": {
+        "text": "타이틀로"
     }
 }
