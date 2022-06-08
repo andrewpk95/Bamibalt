@@ -1,5 +1,6 @@
 import RoundRectangleButton from 'src/components/buttons/roundRectangleButton';
 import BaseScene from 'src/scenes/base';
+import PopupScene from 'src/scenes/popup';
 
 export default class DescriptionButton extends RoundRectangleButton {
   constructor(scene: BaseScene) {
@@ -17,5 +18,6 @@ export default class DescriptionButton extends RoundRectangleButton {
 
   protected onButtonUp(): void {
     super.onButtonUp();
+    PopupScene.instance.openDescriptionPopup();
   }
 }

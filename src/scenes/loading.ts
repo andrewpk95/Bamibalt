@@ -1,5 +1,6 @@
 import PlayButton from 'src/components/buttons/playButton';
 import BaseScene from 'src/scenes/base';
+import PopupScene from 'src/scenes/popup';
 
 export default class LoadingScene extends BaseScene {
   constructor() {
@@ -19,5 +20,7 @@ export default class LoadingScene extends BaseScene {
       x: 'center',
       y: '100%-100',
     });
+
+    this.scene.add('PopupScene', PopupScene, true);
   }
 }

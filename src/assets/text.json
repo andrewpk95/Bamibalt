@@ -11,6 +11,12 @@
     "TitleScene_Description": {
         "text": "설명"
     },
+    "PopupScene_Description_Content1": {
+        "text": "클릭/탭으로 점프/더블 점프!"
+    },
+    "PopupScene_Description_Content2": {
+        "text": "얼마나 멀리 도망칠 수 있을 까...!"
+    },
     "ResultScene_Retry": {
         "text": "다시하기"
     },
