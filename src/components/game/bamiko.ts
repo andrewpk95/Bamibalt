@@ -19,7 +19,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   }
 
   constructor(scene: Phaser.Scene, difficulty: Difficulty) {
-    super(scene, 500, 500, 90, 150, 0xffffff);
+    super(scene, 0, 0, 90, 150, 0xffffff);
 
     this.difficulty = difficulty;
     this.scene.add.existing(this);
