@@ -1,9 +1,11 @@
 import GameSettings from 'src/assets/settings';
 import Bamiko from 'src/components/game/bamiko';
+import Difficulty from 'src/components/game/difficulty';
 import ObstacleGenerator from 'src/components/game/obstacleGenerator';
 import BaseScene from 'src/scenes/base';
 
 export default class GameScene extends BaseScene {
+  private difficulty: Difficulty;
   private bamiko: Bamiko;
   private obstacleGenerator: ObstacleGenerator;
 
@@ -14,11 +16,13 @@ export default class GameScene extends BaseScene {
   }
 
   create() {
-    const bamiko = new Bamiko(this);
+    const difficulty = new Difficulty(this);
+    const bamiko = new Bamiko(this, difficulty);
     const obstacleGenerator = new ObstacleGenerator(this, {
       bamiko,
     });
 
+    this.difficulty = difficulty;
     this.bamiko = bamiko;
     this.obstacleGenerator = obstacleGenerator;
 

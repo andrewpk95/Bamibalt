@@ -1,8 +1,13 @@
 import Phaser from 'phaser';
 import GameSettings from 'src/assets/settings';
+import Difficulty from 'src/components/game/difficulty';
 
 export default class Bamiko extends Phaser.GameObjects.Rectangle {
+  private difficulty: Difficulty;
+
   private isDamaged: boolean = false;
+  private currentRecoverTime: number = 0;
+
   private hasDoubleJump: boolean = true;
 
   public get isGrounded() {
@@ -12,9 +17,10 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     return (this.body as Phaser.Physics.Arcade.Body).touching.down;
   }
 
-  constructor(scene: Phaser.Scene) {
+  constructor(scene: Phaser.Scene, difficulty: Difficulty) {
     super(scene, 500, 500, 100, 180, 0xffffff);
 
+    this.difficulty = difficulty;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
 
@@ -32,16 +38,28 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   }
 
   public takeDamage() {
+    const { minSpeed } = this.difficulty.getDifficultySettings();
+
     if (this.isDamaged) {
       this.emit('damagedeath');
       return;
     }
     console.warn('ouch');
     this.isDamaged = true;
+    this.body.velocity.x = minSpeed;
     this.emit('damaged');
   }
 
-  update(): void {
+  update(time: number, delta: number): void {
+    const deltaTime = delta / 1000;
+
+    this.updatePhysics(deltaTime);
+    this.updateRecoverTime(deltaTime);
+  }
+
+  private updatePhysics(deltaTime: number) {
+    const { minSpeed, maxSpeed, acceleration } = this.difficulty.getDifficultySettings();
+
     if (this.body.position.y > this.scene.scale.gameSize.height) {
       this.emit('falldeath');
       return;
@@ -49,7 +67,27 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     if (this.isGrounded) {
       this.hasDoubleJump = true;
     }
-    this.body.velocity.x = 700;
+
+    if (!this.isDamaged) {
+      this.body.velocity.x += acceleration * deltaTime;
+    }
+
+    this.body.velocity.x = Phaser.Math.Clamp(this.body.velocity.x, minSpeed, maxSpeed);
+  }
+
+  private updateRecoverTime(deltaTime: number) {
+    const { recoverTime } = this.difficulty.getDifficultySettings();
+
+    if (!this.isDamaged) {
+      return;
+    }
+    this.currentRecoverTime += deltaTime;
+
+    if (this.currentRecoverTime >= recoverTime) {
+      this.isDamaged = false;
+      this.currentRecoverTime = 0;
+      console.warn('recovered');
+    }
   }
 
   destroy(fromScene?: boolean): void {
