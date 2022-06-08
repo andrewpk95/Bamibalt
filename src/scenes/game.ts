@@ -51,17 +51,65 @@ export default class GameScene extends BaseScene {
   private handleSplatDeath() {
     console.warn('splat');
     this.cameras.main.shake(250, 0.01, true);
-    this.gameOver();
+
+    const timeline = this.tweens.createTimeline()
+      .add({
+        targets: this.bamiko,
+        y: '+=50',
+        duration: 1000,
+        onComplete: () => {
+          this.gameOver();
+        },
+      });
+
+    timeline.play();
   }
 
   private handleDamageDeath() {
     console.warn('caught!');
-    this.gameOver();
+    const timeline = this.tweens.createTimeline()
+      .add({
+        targets: this.bamiko,
+        y: '+=200',
+        duration: 500,
+        onComplete: () => {
+          this.cameras.main.shake(250, 0.01, true);
+        },
+      })
+      .add({
+        targets: this.bamiko,
+        y: '+=200',
+        duration: 500,
+        onComplete: () => {
+          this.gameOver();
+        },
+      });
+
+    timeline.play();
   }
 
   private handleFallDeath() {
     console.warn('fell!');
-    this.gameOver();
+
+    const timeline = this.tweens.createTimeline()
+      .add({
+        targets: this.bamiko,
+        y: '+=200',
+        duration: 500,
+        onComplete: () => {
+          this.cameras.main.shake(250, 0.01, true);
+        },
+      })
+      .add({
+        targets: this.bamiko,
+        y: '+=200',
+        duration: 500,
+        onComplete: () => {
+          this.gameOver();
+        },
+      });
+
+    timeline.play();
   }
 
   private gameOver() {

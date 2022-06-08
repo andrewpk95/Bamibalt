@@ -19,7 +19,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   }
 
   constructor(scene: Phaser.Scene, difficulty: Difficulty) {
-    super(scene, 500, 500, 100, 180, 0xffffff);
+    super(scene, 500, 500, 90, 150, 0xffffff);
 
     this.difficulty = difficulty;
     this.scene.add.existing(this);
@@ -48,7 +48,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     const { minSpeed } = this.difficulty.getDifficultySettings();
 
     if (this.isDamaged) {
-      this.isDead = true;
+      this.die();
       this.emit('damagedeath');
       return;
     }
@@ -61,8 +61,13 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     if (this.isDead) {
       return;
     }
-    this.isDead = true;
+    this.die();
     this.emit('splatdeath');
+  }
+
+  private die() {
+    this.isDead = true;
+    this.scene.physics.world.remove(this.body as Phaser.Physics.Arcade.Body);
   }
 
   update(time: number, delta: number): void {
@@ -79,7 +84,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     const { minSpeed, maxSpeed, acceleration } = this.difficulty.getDifficultySettings();
 
     if (this.body.position.y > this.scene.scale.gameSize.height) {
-      this.isDead = true;
+      this.die();
       this.emit('falldeath');
       return;
     }
