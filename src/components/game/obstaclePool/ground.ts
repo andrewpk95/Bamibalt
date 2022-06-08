@@ -8,6 +8,10 @@ export default class GroundObstaclePool extends BaseObstaclePool<GroundObstacle>
     super(scene, GroundObstacle, bamiko);
 
     this.group = scene.physics.add.staticGroup();
-    scene.physics.add.collider(bamiko, this.group);
+    scene.physics.add.collider(bamiko, this.group, (player) => {
+      if (player.body.touching.right) {
+        bamiko.splat();
+      }
+    });
   }
 }

@@ -6,6 +6,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   private difficulty: Difficulty;
 
   private isDamaged: boolean = false;
+  private isDead: boolean = false;
   private currentRecoverTime: number = 0;
 
   private hasDoubleJump: boolean = true;
@@ -29,6 +30,9 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   }
 
   private jump() {
+    if (this.isDead) {
+      return;
+    }
     if (this.isGrounded) {
       this.body.velocity.y = -GameSettings.bamiko.jumpVelocity;
     } else if (this.hasDoubleJump) {
@@ -38,19 +42,33 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   }
 
   public takeDamage() {
+    if (this.isDead) {
+      return;
+    }
     const { minSpeed } = this.difficulty.getDifficultySettings();
 
     if (this.isDamaged) {
+      this.isDead = true;
       this.emit('damagedeath');
       return;
     }
-    console.warn('ouch');
     this.isDamaged = true;
     this.body.velocity.x = minSpeed;
     this.emit('damaged');
   }
 
+  public splat() {
+    if (this.isDead) {
+      return;
+    }
+    this.isDead = true;
+    this.emit('splatdeath');
+  }
+
   update(time: number, delta: number): void {
+    if (this.isDead) {
+      return;
+    }
     const deltaTime = delta / 1000;
 
     this.updatePhysics(deltaTime);
@@ -61,6 +79,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     const { minSpeed, maxSpeed, acceleration } = this.difficulty.getDifficultySettings();
 
     if (this.body.position.y > this.scene.scale.gameSize.height) {
+      this.isDead = true;
       this.emit('falldeath');
       return;
     }

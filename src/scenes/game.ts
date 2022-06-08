@@ -15,6 +15,10 @@ export default class GameScene extends BaseScene {
     });
   }
 
+  init() {
+    this.cameras.main.setBackgroundColor(0xbbeeee);
+  }
+
   create() {
     const difficulty = new Difficulty(this);
     const bamiko = new Bamiko(this, difficulty);
@@ -26,13 +30,28 @@ export default class GameScene extends BaseScene {
     this.bamiko = bamiko;
     this.obstacleGenerator = obstacleGenerator;
 
+    this.bamiko.on('damaged', this.handleDamage, this);
+    this.bamiko.on('splatdeath', this.handleSplatDeath, this);
     this.bamiko.on('damagedeath', this.handleDamageDeath, this);
     this.bamiko.on('falldeath', this.handleFallDeath, this);
 
     this.events.once('shutdown', () => {
+      this.bamiko.off('damaged', this.handleDamage);
+      this.bamiko.off('splatdeath', this.handleSplatDeath, this);
       this.bamiko.off('damagedeath', this.handleDamageDeath);
       this.bamiko.off('falldeath', this.handleFallDeath);
     });
+  }
+
+  private handleDamage() {
+    console.warn('ouch');
+    this.cameras.main.shake(250, 0.01, true);
+  }
+
+  private handleSplatDeath() {
+    console.warn('splat');
+    this.cameras.main.shake(250, 0.01, true);
+    this.gameOver();
   }
 
   private handleDamageDeath() {
