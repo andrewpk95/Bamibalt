@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import Bamiko from 'src/components/game/bamiko';
-import BaseObstacle from 'src/components/game/obstacles/base';
 
 export default abstract class BaseObstacleGroup {
   protected scene: Phaser.Scene;
@@ -12,5 +11,5 @@ export default abstract class BaseObstacleGroup {
     this.bamiko = bamiko;
   }
 
-  public abstract spawn(x: number, y: number): BaseObstacle[];
+  public abstract spawn(x: number, y: number): void;
 }

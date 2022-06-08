@@ -13,12 +13,11 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   }
 
   constructor(scene: Phaser.Scene) {
-    super(scene, 500, 500, 64, 64, 0xffffff);
+    super(scene, 500, 500, 100, 180, 0xffffff);
 
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
 
-    this.body.velocity.x = 700;
     this.scene.input.on('pointerdown', this.jump, this);
     this.scene.events.on('update', this.update, this);
   }
@@ -50,6 +49,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     if (this.isGrounded) {
       this.hasDoubleJump = true;
     }
+    this.body.velocity.x = 700;
   }
 
   destroy(fromScene?: boolean): void {
