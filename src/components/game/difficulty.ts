@@ -24,6 +24,7 @@ export default class Difficulty extends Phaser.GameObjects.Container {
       this.currentLevel++;
       this.currentTime = 0;
       console.warn(`level up: ${this.currentLevel}`);
+      this.emit('levelup', this.currentLevel);
     }
   }
 

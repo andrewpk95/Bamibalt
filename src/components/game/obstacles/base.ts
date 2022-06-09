@@ -17,17 +17,19 @@ export default abstract class BaseObstacle
 
   protected abstract initialize(): void;
 
-  update = () => {
+  update() {
     if (!this.bamiko) {
       return;
     }
     if (this.bamiko.body.position.x > this.x + this.width + this.scene.scale.gameSize.width) {
       this.emit('expired');
     }
-  };
+  }
+
+  handleUpdate = () => this.update();
 
   kill(): this {
-    this.scene.events.off('update', this.update);
+    this.scene.events.off('update', this.handleUpdate);
     this.scene.physics.world.remove(this.body as Phaser.Physics.Arcade.Body);
     this.setActive(false);
     this.setVisible(false);
@@ -35,19 +37,19 @@ export default abstract class BaseObstacle
     return this;
   }
 
-  reset(x: number, y: number): this {
+  reset(x: number, y: number, config?: any): this {
     this.setPosition(x, y);
     this.setActive(true);
     this.setVisible(true);
     this.scene.physics.world.add(this.body as Phaser.Physics.Arcade.Body);
     (this.body as Phaser.Physics.Arcade.Body).reset(x, y);
-    this.scene.events.on('update', this.update, this);
+    this.scene.events.on('update', this.handleUpdate);
 
     return this;
   }
 
   destroy(fromScene?: boolean): void {
-    this.scene.events.off('update', this.update);
+    this.scene.events.off('update', this.handleUpdate);
 
     super.destroy(fromScene);
   }

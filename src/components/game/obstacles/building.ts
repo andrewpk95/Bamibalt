@@ -4,11 +4,11 @@ export default class BuildingObstacle extends BaseObstacle {
   public buildingTop: Phaser.GameObjects.Rectangle;
 
   protected initialize(): void {
-    const buildingTop = this.scene.add.rectangle(0, 0, 2000, 1000, 0xaaaaff)
+    const buildingTop = this.scene.add.rectangle(0, 0, 2500, 1000, 0xaaaaff)
       .setOrigin(0, 1);
 
     this
-      .setSize(2000, 1000)
+      .setSize(2500, 1000)
       .setFillStyle(0xaaaaff)
       .setOrigin(0, 0);
 

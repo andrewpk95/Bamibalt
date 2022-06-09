@@ -25,6 +25,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
 
+    this.body.velocity.x = this.difficulty.getDifficultySettings().minSpeed;
     this.scene.input.on('pointerdown', this.jump, this);
     this.scene.events.on('update', this.update, this);
   }
@@ -81,7 +82,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   }
 
   private updatePhysics(deltaTime: number) {
-    const { minSpeed, maxSpeed, acceleration } = this.difficulty.getDifficultySettings();
+    const { maxSpeed, acceleration } = this.difficulty.getDifficultySettings();
 
     if (this.body.position.y > this.scene.scale.gameSize.height) {
       this.die();
@@ -96,7 +97,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
       this.body.velocity.x += acceleration * deltaTime;
     }
 
-    this.body.velocity.x = Phaser.Math.Clamp(this.body.velocity.x, minSpeed, maxSpeed);
+    this.body.velocity.x = Phaser.Math.Clamp(this.body.velocity.x, 0, maxSpeed);
   }
 
   private updateRecoverTime(deltaTime: number) {
@@ -110,7 +111,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     if (this.currentRecoverTime >= recoverTime) {
       this.isDamaged = false;
       this.currentRecoverTime = 0;
-      console.warn('recovered');
+      this.emit('recover');
     }
   }
 

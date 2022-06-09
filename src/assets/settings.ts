@@ -1,11 +1,15 @@
 const GameSettings = {
   camera: {
     offsetX: 200, // Pixel
+    damagedOffsetX: 400,
     offsetY: 200, // Pixel
   },
   bamiko: {
-    jumpVelocity: 900, // Pixel / sec.
-    doubleJumpVelocity: 750, // Pixel / sec.
+    jumpVelocity: 1100, // Pixel / sec.
+    doubleJumpVelocity: 800, // Pixel / sec.
+  },
+  yuri: {
+    followDistance: 300, // Pixel
   },
   difficulty: {
     maxLevel: 2,
