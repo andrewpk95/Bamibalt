@@ -8,8 +8,10 @@ export default class PlaneObstacleGroup extends BaseObstacleGroup {
   private planePool = new PlaneObstaclePool(this.scene, this.bamiko);
 
   public spawn(x: number, y: number) {
+    const isAbove = Phaser.Math.Between(0, 1);
+    const planeOffset = isAbove ? 80 : this.bamiko.height + 80;
     const ground = this.groundPool.get(x, y);
-    const plane = this.planePool.get(x + Phaser.Math.Between(500, 1500), 0, y - 80);
+    const plane = this.planePool.get(x + Phaser.Math.Between(500, 1500), 0, y - planeOffset);
 
     this.scene.physics.add.collider(ground, plane);
   }

@@ -39,7 +39,7 @@ export default class PlaneObstacle extends BaseObstacle {
         })
         .add({
           targets: this,
-          x: '-=500',
+          x: `-=${Phaser.Math.Between(500, 1500)}`,
           duration: 6000,
           offset: 0,
         });
