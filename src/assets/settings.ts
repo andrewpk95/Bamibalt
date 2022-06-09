@@ -5,8 +5,10 @@ const GameSettings = {
     offsetY: 200, // Pixel
   },
   bamiko: {
-    jumpVelocity: 1100, // Pixel / sec.
+    jumpVelocity: 900, // Pixel / sec.
+    maxJumpDuration: 0.25, // Seconds
     doubleJumpVelocity: 800, // Pixel / sec.
+    maxDoubleJumpDuration: 0.2, // Seconds
   },
   yuri: {
     followDistance: 300, // Pixel

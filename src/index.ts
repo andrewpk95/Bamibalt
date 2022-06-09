@@ -21,7 +21,7 @@ function launchGame() {
       default: 'arcade',
       arcade: {
         debug: true,
-        gravity: { y: 2000 },
+        gravity: { y: 3000 },
       },
     },
     scene: [BootScene, LoadingScene, TitleScene, GameScene, ResultScene],

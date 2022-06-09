@@ -2,9 +2,17 @@ import Phaser from 'phaser';
 import GameSettings from 'src/assets/settings';
 import Difficulty from 'src/components/game/difficulty';
 
+enum JumpState {
+  None,
+  Jumping,
+  DoubleJumping,
+}
+
 export default class Bamiko extends Phaser.GameObjects.Rectangle {
   private difficulty: Difficulty;
 
+  private jumpState: JumpState = JumpState.None;
+  private currentJumpTime: number = 0;
   private isDamaged: boolean = false;
   private isDead: boolean = false;
   private currentRecoverTime: number = 0;
@@ -27,6 +35,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
 
     this.body.velocity.x = this.difficulty.getDifficultySettings().minSpeed;
     this.scene.input.on('pointerdown', this.jump, this);
+    this.scene.input.on('pointerup', this.stopJumping, this);
     this.scene.events.on('update', this.update, this);
   }
 
@@ -35,11 +44,16 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
       return;
     }
     if (this.isGrounded) {
-      this.body.velocity.y = -GameSettings.bamiko.jumpVelocity;
+      this.jumpState = JumpState.Jumping;
     } else if (this.hasDoubleJump) {
-      this.body.velocity.y = -GameSettings.bamiko.doubleJumpVelocity;
+      this.jumpState = JumpState.DoubleJumping;
       this.hasDoubleJump = false;
     }
+  }
+
+  private stopJumping() {
+    this.jumpState = JumpState.None;
+    this.currentJumpTime = 0;
   }
 
   public takeDamage() {
@@ -98,6 +112,24 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     }
 
     this.body.velocity.x = Phaser.Math.Clamp(this.body.velocity.x, 0, maxSpeed);
+
+    if (this.jumpState === JumpState.None) {
+      return;
+    }
+    this.currentJumpTime += deltaTime;
+
+    const jumpEndTime = this.jumpState === JumpState.Jumping
+      ? GameSettings.bamiko.maxJumpDuration
+      : GameSettings.bamiko.maxDoubleJumpDuration;
+
+    if (this.currentJumpTime >= jumpEndTime) {
+      this.stopJumping();
+      return;
+    }
+
+    this.body.velocity.y = this.jumpState === JumpState.Jumping
+      ? -GameSettings.bamiko.jumpVelocity
+      : -GameSettings.bamiko.doubleJumpVelocity;
   }
 
   private updateRecoverTime(deltaTime: number) {
@@ -117,6 +149,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
 
   destroy(fromScene?: boolean): void {
     this.scene.input.off('pointerdown', this.jump);
+    this.scene.input.off('pointerup', this.stopJumping);
     this.scene.events.off('update', this.update);
 
     super.destroy(fromScene);
