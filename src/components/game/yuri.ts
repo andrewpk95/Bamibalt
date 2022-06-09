@@ -7,7 +7,8 @@ export default class Yuri extends Phaser.GameObjects.Rectangle {
   private bamiko: Bamiko;
   private difficulty: Difficulty;
   private positions: Phaser.Math.Vector2[] = [];
-  private frameOffset: number;
+
+  private isFollowing: boolean;
 
   constructor(scene: Phaser.Scene, bamiko: Bamiko, difficulty: Difficulty) {
     super(scene, -300, 0, 90, 150, 0xffaaaa);
@@ -18,31 +19,35 @@ export default class Yuri extends Phaser.GameObjects.Rectangle {
     this.scene.add.existing(this);
 
     this.scene.events.on('update', this.update, this);
-    this.difficulty.on('levelup', this.handleLevelUp, this);
-    this.handleLevelUp();
   }
 
-  private handleLevelUp() {
-    const { followDistance } = GameSettings.yuri;
-    const { minSpeed } = this.difficulty.getDifficultySettings();
-    const fps = this.scene.game.loop.targetFps;
-    const frameOffset = Math.round((followDistance / minSpeed) * fps);
+  update(time: number, delta: number): void {
+    const deltaTime = delta / 1000;
+    const fps = 1 / deltaTime;
 
-    this.frameOffset = frameOffset;
-  }
-
-  update(): void {
     this.positions.push(new Phaser.Math.Vector2(this.bamiko.body.position));
 
-    let nextPosition: Phaser.Math.Vector2;
-
-    while (this.positions.length > this.frameOffset) {
-      nextPosition = this.positions.shift();
+    while (this.positions.length > fps) {
+      this.positions.shift();
     }
+
+    if (!this.isFollowing) {
+      return;
+    }
+
+    const nextPosition = this.positions.find(({ x }) => {
+      const { followDistance } = GameSettings.yuri;
+
+      return this.bamiko.body.position.x - x <= followDistance;
+    });
 
     if (nextPosition) {
       this.setPosition(nextPosition.x, nextPosition.y);
     }
+  }
+
+  public toggleFollow(follow: boolean) {
+    this.isFollowing = follow;
   }
 
   destroy(fromScene?: boolean): void {

@@ -58,6 +58,7 @@ export default class GameScene extends BaseScene {
 
   private handleDamage() {
     console.warn('ouch');
+    this.yuri.toggleFollow(true);
     this.cameras.main.shake(250, 0.01, true);
     this.tweens.add({
       targets: this,
@@ -72,6 +73,9 @@ export default class GameScene extends BaseScene {
       targets: this,
       targetOffsetX: GameSettings.camera.offsetX,
       duration: 500,
+      onComplete: () => {
+        this.yuri.toggleFollow(false);
+      },
     });
   }
 
