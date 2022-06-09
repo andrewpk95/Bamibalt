@@ -1,5 +1,6 @@
 import PlayButton from 'src/components/buttons/playButton';
 import BaseScene from 'src/scenes/base';
+import GameUIScene from 'src/scenes/gameUI';
 import PopupScene from 'src/scenes/popup';
 
 export default class LoadingScene extends BaseScene {
@@ -21,6 +22,7 @@ export default class LoadingScene extends BaseScene {
       y: '100%-100',
     });
 
+    this.scene.add('GameUIScene', GameUIScene, true);
     this.scene.add('PopupScene', PopupScene, true);
   }
 }

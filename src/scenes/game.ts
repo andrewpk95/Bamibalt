@@ -3,8 +3,11 @@ import Bamiko from 'src/components/game/bamiko';
 import Difficulty from 'src/components/game/difficulty';
 import ObstacleGenerator from 'src/components/game/obstacleGenerator';
 import BaseScene from 'src/scenes/base';
+import GameUIScene from 'src/scenes/gameUI';
 
 export default class GameScene extends BaseScene {
+  private currentScore: number;
+
   private difficulty: Difficulty;
   private bamiko: Bamiko;
   private obstacleGenerator: ObstacleGenerator;
@@ -17,6 +20,7 @@ export default class GameScene extends BaseScene {
 
   init() {
     this.cameras.main.setBackgroundColor(0xbbeeee);
+    GameUIScene.instance.toggle(true);
   }
 
   create() {
@@ -113,11 +117,16 @@ export default class GameScene extends BaseScene {
   }
 
   private gameOver() {
-    this.scene.start('ResultScene', { record: Math.round(this.bamiko.body.position.x) });
+    GameUIScene.instance.toggle(false);
+    this.scene.start('ResultScene', { record: this.currentScore });
   }
 
   update() {
+    const currentScore = Math.round(this.bamiko.body.position.x / 100);
+
     this.updateCamera();
+    GameUIScene.instance.updateScore(currentScore);
+    this.currentScore = currentScore;
   }
 
   private updateCamera() {
