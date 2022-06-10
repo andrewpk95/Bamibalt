@@ -2,11 +2,18 @@ import Sizer from 'phaser3-rex-plugins/templates/ui/sizer/Sizer';
 import BasePopup, { BasePopupOptions } from 'src/components/popup/basePopup';
 import BaseScene from 'src/scenes/base';
 
+type SizerPopupOptions = {
+  transition: boolean;
+};
+
 export default abstract class SizerPopup<TOptions extends BasePopupOptions> extends BasePopup {
+  private transition: boolean;
   private sizer: Sizer;
 
-  constructor(scene: BaseScene) {
+  constructor(scene: BaseScene, { transition }: SizerPopupOptions) {
     super(scene, { closeOnTap: true });
+
+    this.transition = transition;
   }
 
   protected initializeComponents(options: TOptions): void {
@@ -25,7 +32,12 @@ export default abstract class SizerPopup<TOptions extends BasePopupOptions> exte
   public open(): void {
     super.open();
 
-    this.sizer.setVisible(true);
+    this.sizer
+      .setVisible(true)
+      .layout();
+    if (this.transition) {
+      this.sizer.popUp(200);
+    }
   }
 
   public close(): void {
