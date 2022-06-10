@@ -13,6 +13,11 @@ const GameSettings = {
   yuri: {
     followDistance: 300, // Pixel
   },
+  obstacle: {
+    building: {
+      height: 300,
+    },
+  },
   difficulty: {
     maxLevel: 2,
     levels: [
