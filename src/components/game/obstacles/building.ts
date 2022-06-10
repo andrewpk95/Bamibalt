@@ -1,3 +1,4 @@
+import GameSettings from 'src/assets/settings';
 import BaseObstacle from 'src/components/game/obstacles/base';
 
 export default class BuildingObstacle extends BaseObstacle {
@@ -18,12 +19,12 @@ export default class BuildingObstacle extends BaseObstacle {
 
     this.scene.physics.add.collider(this.bamiko, this, (player) => {
       if (player.body.touching.right) {
-        this.bamiko.splat();
+        this.bamiko.splat(this.x);
       }
     });
     this.scene.physics.add.collider(this.bamiko, this.buildingTop, (player) => {
       if (player.body.touching.right) {
-        this.bamiko.splat();
+        this.bamiko.splat(this.x);
       }
     });
   }
@@ -37,11 +38,13 @@ export default class BuildingObstacle extends BaseObstacle {
   }
 
   reset(x: number, y: number): this {
-    this.buildingTop.setPosition(x, y - 300);
+    const { height } = GameSettings.obstacle.building;
+
+    this.buildingTop.setPosition(x, y - height);
     this.buildingTop.setActive(true);
     this.buildingTop.setVisible(true);
     this.scene.physics.world.add(this.buildingTop.body as Phaser.Physics.Arcade.Body);
-    (this.buildingTop.body as Phaser.Physics.Arcade.Body).reset(x, y - 300);
+    (this.buildingTop.body as Phaser.Physics.Arcade.Body).reset(x, y - height);
 
     return super.reset(x, y);
   }

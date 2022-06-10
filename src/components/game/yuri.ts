@@ -11,11 +11,10 @@ export default class Yuri extends Phaser.GameObjects.Rectangle {
   private isFollowing: boolean;
 
   constructor(scene: Phaser.Scene, bamiko: Bamiko, difficulty: Difficulty) {
-    super(scene, -300, 0, 90, 150, 0xffaaaa);
+    super(scene, -GameSettings.yuri.followDistance, 0, 90, 150, 0xffaaaa);
 
     this.bamiko = bamiko;
     this.difficulty = difficulty;
-    this.setOrigin(0, 0);
     this.scene.add.existing(this);
 
     this.scene.events.on('update', this.update, this);
@@ -42,7 +41,9 @@ export default class Yuri extends Phaser.GameObjects.Rectangle {
     });
 
     if (nextPosition) {
-      this.setPosition(nextPosition.x, nextPosition.y);
+      const { width, height } = this.bamiko.body;
+
+      this.setPosition(nextPosition.x + width / 2, nextPosition.y + height / 2);
     }
   }
 

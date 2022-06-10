@@ -4,6 +4,7 @@ import Poolable from 'src/components/objectPool/poolable';
 
 export default abstract class BaseObstacle
   extends Phaser.GameObjects.Rectangle implements Poolable {
+  body: Phaser.Physics.Arcade.Body;
   protected bamiko: Bamiko;
 
   constructor(scene: Phaser.Scene, bamiko: Bamiko) {
@@ -30,7 +31,7 @@ export default abstract class BaseObstacle
 
   kill(): this {
     this.scene.events.off('update', this.handleUpdate);
-    this.scene.physics.world.remove(this.body as Phaser.Physics.Arcade.Body);
+    this.scene.physics.world.remove(this.body);
     this.setActive(false);
     this.setVisible(false);
 
@@ -41,8 +42,8 @@ export default abstract class BaseObstacle
     this.setPosition(x, y);
     this.setActive(true);
     this.setVisible(true);
-    this.scene.physics.world.add(this.body as Phaser.Physics.Arcade.Body);
-    (this.body as Phaser.Physics.Arcade.Body).reset(x, y);
+    this.scene.physics.world.add(this.body);
+    this.body.reset(x, y);
     this.scene.events.on('update', this.handleUpdate);
 
     return this;

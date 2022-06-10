@@ -9,6 +9,7 @@ import GameUIScene from 'src/scenes/gameUI';
 export default class GameScene extends BaseScene {
   private targetOffsetX: number;
   private currentScore: number;
+  private cameraTween: Phaser.Tweens.Tween;
 
   private difficulty: Difficulty;
   private bamiko: Bamiko;
@@ -60,19 +61,23 @@ export default class GameScene extends BaseScene {
     console.warn('ouch');
     this.yuri.toggleFollow(true);
     this.cameras.main.shake(250, 0.01, true);
-    this.tweens.add({
+    this.cameraTween?.stop();
+    this.cameraTween = this.tweens.add({
       targets: this,
       targetOffsetX: GameSettings.camera.damagedOffsetX,
       duration: 500,
+      ease: 'Sine.easeInOut',
     });
   }
 
   private handleRecover() {
     console.warn('recovered');
-    this.tweens.add({
+    this.cameraTween?.stop();
+    this.cameraTween = this.tweens.add({
       targets: this,
       targetOffsetX: GameSettings.camera.offsetX,
       duration: 500,
+      ease: 'Sine.easeInOut',
       onComplete: () => {
         this.yuri.toggleFollow(false);
       },
@@ -86,8 +91,9 @@ export default class GameScene extends BaseScene {
     const timeline = this.tweens.createTimeline()
       .add({
         targets: this.bamiko,
-        y: '+=50',
+        y: '+=500',
         duration: 1000,
+        ease: 'Quad.easeIn',
         onComplete: () => {
           this.gameOver();
         },
@@ -98,22 +104,41 @@ export default class GameScene extends BaseScene {
 
   private handleDamageDeath() {
     console.warn('caught!');
+    const { followDistance } = GameSettings.yuri;
+    const { maxSpeed } = this.difficulty.getDifficultySettings();
+    const catchUpDuration = (followDistance / maxSpeed) * 1000;
+
+    this.yuri.toggleFollow(false);
+    this.cameras.main.shake(250, 0.01, true);
+
     const timeline = this.tweens.createTimeline()
       .add({
-        targets: this.bamiko,
-        y: '+=200',
-        duration: 500,
-        onComplete: () => {
-          this.cameras.main.shake(250, 0.01, true);
-        },
+        targets: this.yuri,
+        x: this.bamiko.x,
+        y: this.bamiko.y,
+        duration: catchUpDuration,
       })
       .add({
-        targets: this.bamiko,
+        targets: [this.bamiko, this.yuri],
+        y: '-=200',
+        duration: 500,
+        ease: 'Quad.easeOut',
+      })
+      .add({
+        targets: [this.bamiko, this.yuri],
         y: '+=200',
         duration: 500,
+        ease: 'Quad.easeIn',
         onComplete: () => {
           this.gameOver();
         },
+      })
+      .add({
+        targets: [this.bamiko, this.yuri],
+        x: `+=${maxSpeed}`,
+        angle: Phaser.Math.Between(1, 10) * 90,
+        duration: 1000,
+        offset: catchUpDuration,
       });
 
     timeline.play();

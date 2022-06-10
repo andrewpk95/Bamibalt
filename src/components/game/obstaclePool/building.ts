@@ -8,9 +8,9 @@ export default class BuildingObstaclePool extends BaseObstaclePool<BuildingObsta
     super(scene, BuildingObstacle, bamiko);
 
     this.group = scene.physics.add.staticGroup();
-    scene.physics.add.collider(bamiko, this.group, (player) => {
+    scene.physics.add.collider(bamiko, this.group, (player, building) => {
       if (player.body.touching.right) {
-        bamiko.splat();
+        bamiko.splat(building.body.x);
       }
     });
   }

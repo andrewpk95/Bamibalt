@@ -9,6 +9,7 @@ enum JumpState {
 }
 
 export default class Bamiko extends Phaser.GameObjects.Rectangle {
+  body: Phaser.Physics.Arcade.Body;
   private difficulty: Difficulty;
 
   private jumpState: JumpState = JumpState.None;
@@ -23,7 +24,7 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     if (!this.body) {
       return false;
     }
-    return (this.body as Phaser.Physics.Arcade.Body).touching.down;
+    return this.body.touching.down;
   }
 
   constructor(scene: Phaser.Scene, difficulty: Difficulty) {
@@ -72,17 +73,18 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
     this.emit('damaged');
   }
 
-  public splat() {
+  public splat(x: number) {
     if (this.isDead) {
       return;
     }
     this.die();
+    this.setX(x - this.width / 2);
     this.emit('splatdeath');
   }
 
   private die() {
     this.isDead = true;
-    this.scene.physics.world.remove(this.body as Phaser.Physics.Arcade.Body);
+    this.scene.physics.world.remove(this.body);
   }
 
   update(time: number, delta: number): void {

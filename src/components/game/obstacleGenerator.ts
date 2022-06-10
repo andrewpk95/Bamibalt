@@ -16,7 +16,7 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
   private bamiko: Bamiko;
   private difficulty: Difficulty;
   private currentObstacleX: number = -300;
-  private currentObstacleY: number = 1000;
+  private currentObstacleY: number = 800;
   private obstacleGroups: BaseObstacleGroup[] = [];
 
   constructor(scene: Phaser.Scene, { bamiko, difficulty }: ObstacleGeneratorOptions) {
@@ -38,7 +38,7 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
 
     // Initial obstacle sequence
     this.spawnObstacle(buildingObstacleGroup, 100);
-    this.spawnObstacle(groundObstacleGroup);
+    this.spawnObstacle(groundObstacleGroup, 800);
 
     this.scene.events.on('update', this.update, this);
   }
@@ -46,6 +46,9 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
   update(): void {
     if (this.bamiko.x + this.scene.scale.gameSize.width > this.currentObstacleX) {
       const randomObstacleGroup = Phaser.Math.RND.pick(this.obstacleGroups);
+
+      this.currentObstacleY += Phaser.Math.Between(1, 4) * 50 * Phaser.Math.RND.sign();
+      this.currentObstacleY = Phaser.Math.Clamp(this.currentObstacleY, 0, 1000);
 
       this.spawnObstacle(randomObstacleGroup);
     }
@@ -55,8 +58,6 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
     obstacleGroup.spawn(this.currentObstacleX, y ?? this.currentObstacleY);
 
     this.currentObstacleX += obstacleGroup.width + this.difficulty.getDifficultySettings().minSpeed;
-    this.currentObstacleY += Phaser.Math.Between(-2, 2) * 100;
-    this.currentObstacleY = Phaser.Math.Clamp(this.currentObstacleY, 0, 1000);
   }
 
   destroy(fromScene?: boolean): void {
