@@ -28,12 +28,15 @@ export default class Bamiko extends Phaser.GameObjects.Rectangle {
   }
 
   constructor(scene: Phaser.Scene, difficulty: Difficulty) {
-    super(scene, 0, 0, 90, 150, 0xffffff);
+    super(scene, 0, 0, 120, 180, 0xffffff);
 
     this.difficulty = difficulty;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
 
+    this.setOrigin(0.5, 0.5);
+    this.body.setSize(90, 150, false)
+      .setOffset(15, 30);
     this.body.velocity.x = this.difficulty.getDifficultySettings().minSpeed;
     this.scene.input.on('pointerdown', this.jump, this);
     this.scene.input.on('pointerup', this.stopJumping, this);

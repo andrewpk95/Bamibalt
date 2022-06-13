@@ -1,0 +1,209 @@
+{
+	"textures": [
+		{
+			"image": "yuri.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 400,
+				"h": 464
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "yuri_run_0005.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 7,
+						"w": 135,
+						"h": 163
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 135,
+						"h": 163
+					}
+				},
+				{
+					"filename": "yuri_run_0006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 13,
+						"w": 130,
+						"h": 167
+					},
+					"frame": {
+						"x": 1,
+						"y": 166,
+						"w": 130,
+						"h": 167
+					}
+				},
+				{
+					"filename": "yuri_jump_0000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 26,
+						"y": 20,
+						"w": 145,
+						"h": 128
+					},
+					"frame": {
+						"x": 1,
+						"y": 335,
+						"w": 145,
+						"h": 128
+					}
+				},
+				{
+					"filename": "yuri_run_0002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 16,
+						"w": 128,
+						"h": 164
+					},
+					"frame": {
+						"x": 138,
+						"y": 1,
+						"w": 128,
+						"h": 164
+					}
+				},
+				{
+					"filename": "yuri_run_0001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 10,
+						"y": 9,
+						"w": 131,
+						"h": 155
+					},
+					"frame": {
+						"x": 268,
+						"y": 1,
+						"w": 131,
+						"h": 155
+					}
+				},
+				{
+					"filename": "yuri_run_0004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 28,
+						"y": 4,
+						"w": 135,
+						"h": 146
+					},
+					"frame": {
+						"x": 133,
+						"y": 167,
+						"w": 135,
+						"h": 146
+					}
+				},
+				{
+					"filename": "yuri_run_0007.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 44,
+						"y": 6,
+						"w": 101,
+						"h": 148
+					},
+					"frame": {
+						"x": 148,
+						"y": 315,
+						"w": 101,
+						"h": 148
+					}
+				},
+				{
+					"filename": "yuri_run_0003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 41,
+						"y": 7,
+						"w": 92,
+						"h": 156
+					},
+					"frame": {
+						"x": 270,
+						"y": 158,
+						"w": 92,
+						"h": 156
+					}
+				},
+				{
+					"filename": "yuri_run_0000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 200,
+						"h": 180
+					},
+					"spriteSourceSize": {
+						"x": 28,
+						"y": 4,
+						"w": 132,
+						"h": 143
+					},
+					"frame": {
+						"x": 251,
+						"y": 316,
+						"w": 132,
+						"h": 143
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:7062ae49be3066471e84e373f511993a:37c3052ca59a9f763d9aca5cb6b69005:581205fd5cf0151d54506fb9608a175e$"
+	}
+}

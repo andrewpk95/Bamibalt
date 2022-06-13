@@ -11,7 +11,7 @@ export default class Yuri extends Phaser.GameObjects.Rectangle {
   private isFollowing: boolean;
 
   constructor(scene: Phaser.Scene, bamiko: Bamiko, difficulty: Difficulty) {
-    super(scene, -GameSettings.yuri.followDistance, 0, 90, 150, 0xffaaaa);
+    super(scene, -GameSettings.yuri.followDistance, 0, 200, 180, 0xffaaaa);
 
     this.bamiko = bamiko;
     this.difficulty = difficulty;
