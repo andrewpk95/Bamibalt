@@ -7,11 +7,13 @@ export default class PlaneObstacle extends BaseObstacle {
 
   protected initialize(): void {
     this
-      .setSize(100, 75)
+      .setSize(280, 120)
       .setFillStyle(0xffff33)
       .setOrigin(0, 0);
 
     this.scene.physics.add.existing(this, false);
+    this.body.setSize(200, 90, false)
+      .setOffset(40, 20);
   }
 
   update(): void {

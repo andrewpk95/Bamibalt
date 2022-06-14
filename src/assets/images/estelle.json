@@ -1,0 +1,104 @@
+{
+	"textures": [
+		{
+			"image": "estelle.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1071,
+				"h": 122
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "estelle_fly_0001",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 280,
+						"h": 120
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 0,
+						"w": 266,
+						"h": 120
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 266,
+						"h": 120
+					}
+				},
+				{
+					"filename": "estelle_fly_0002",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 280,
+						"h": 120
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 0,
+						"w": 266,
+						"h": 120
+					},
+					"frame": {
+						"x": 269,
+						"y": 1,
+						"w": 266,
+						"h": 120
+					}
+				},
+				{
+					"filename": "estelle_hurt_0000",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 280,
+						"h": 120
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 0,
+						"w": 266,
+						"h": 120
+					},
+					"frame": {
+						"x": 537,
+						"y": 1,
+						"w": 266,
+						"h": 120
+					}
+				},
+				{
+					"filename": "estelle_fly_0000",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 280,
+						"h": 120
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 0,
+						"w": 265,
+						"h": 120
+					},
+					"frame": {
+						"x": 805,
+						"y": 1,
+						"w": 265,
+						"h": 120
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:7710e7a274f0b6735eb4ecdd39f2f522:6c767147356753160c228ac05015f135:3d1dd633be02b934dda006792f9b1ffe$"
+	}
+}

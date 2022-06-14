@@ -10,7 +10,7 @@
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "bamiko_run_0005.png",
+					"filename": "bamiko_run_0005",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -31,7 +31,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_run_0004.png",
+					"filename": "bamiko_run_0004",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -52,7 +52,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_run_0000.png",
+					"filename": "bamiko_run_0000",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -73,7 +73,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_run_0003.png",
+					"filename": "bamiko_run_0003",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -94,7 +94,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_run_0007.png",
+					"filename": "bamiko_run_0007",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -115,7 +115,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_run_0006.png",
+					"filename": "bamiko_run_0006",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -136,7 +136,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_run_0001.png",
+					"filename": "bamiko_run_0001",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -157,7 +157,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_jump_0000.png",
+					"filename": "bamiko_jump_0000",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -178,7 +178,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_run_0002.png",
+					"filename": "bamiko_run_0002",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -199,7 +199,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_splat_0000.png",
+					"filename": "bamiko_splat_0000",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -220,7 +220,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_jump_0001.png",
+					"filename": "bamiko_jump_0001",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -241,7 +241,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_ouch_0000.png",
+					"filename": "bamiko_ouch_0000",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -262,7 +262,7 @@
 					}
 				},
 				{
-					"filename": "bamiko_jump_0002.png",
+					"filename": "bamiko_jump_0002",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -288,6 +288,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:d1a344df64dd63ed736fd130c649ab31:20431e2e6803c0f699a2c63b7cc6504e:b4714e360bcfc0eccbcd66aa42a8cfb6$"
+		"smartupdate": "$TexturePacker:SmartUpdate:20cb9feb52482484978ff560371f15f6:20431e2e6803c0f699a2c63b7cc6504e:b4714e360bcfc0eccbcd66aa42a8cfb6$"
 	}
 }

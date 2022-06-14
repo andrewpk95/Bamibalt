@@ -3,7 +3,7 @@ import BaseObstacle from 'src/components/game/obstacles/base';
 export default class PlatformObstacle extends BaseObstacle {
   protected initialize(): void {
     this
-      .setSize(400, 2)
+      .setSize(600, 2)
       .setFillStyle(0x555555)
       .setOrigin(0, 0);
 

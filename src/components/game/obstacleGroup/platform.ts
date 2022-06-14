@@ -9,8 +9,8 @@ export default class PlatformObstacleGroup extends BaseObstacleGroup {
     const numPlatforms = Phaser.Math.Between(1, 3);
 
     for (let i = 0; i < numPlatforms; i++) {
-      this.platformPool.get(x + i * (400 + 200), y + Phaser.Math.Between(-1, 1) * 100);
+      this.platformPool.get(x + i * (600 + 300), y + Phaser.Math.Between(-1, 1) * 100);
     }
-    this.width = numPlatforms * 400 + (numPlatforms - 1) * 200;
+    this.width = numPlatforms * 600 + (numPlatforms - 1) * 300;
   }
 }
