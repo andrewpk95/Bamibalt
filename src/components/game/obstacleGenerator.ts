@@ -6,6 +6,7 @@ import BoxObstacleGroup from 'src/components/game/obstacleGroup/box';
 import BuildingObstacleGroup from 'src/components/game/obstacleGroup/building';
 import GroundObstacleGroup from 'src/components/game/obstacleGroup/ground';
 import PlaneObstacleGroup from 'src/components/game/obstacleGroup/plane';
+import PlatformObstacleGroup from 'src/components/game/obstacleGroup/platform';
 
 type ObstacleGeneratorOptions = {
   bamiko: Bamiko;
@@ -26,6 +27,7 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
     const boxObstacleGroup = new BoxObstacleGroup(scene, bamiko);
     const buildingObstacleGroup = new BuildingObstacleGroup(scene, bamiko);
     const planeObstacleGroup = new PlaneObstacleGroup(scene, bamiko);
+    const platformObstacleGroup = new PlatformObstacleGroup(scene, bamiko);
 
     this.bamiko = bamiko;
     this.difficulty = difficulty;
@@ -34,6 +36,7 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
       boxObstacleGroup,
       buildingObstacleGroup,
       planeObstacleGroup,
+      platformObstacleGroup,
     ];
 
     // Initial obstacle sequence

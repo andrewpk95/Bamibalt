@@ -32,6 +32,7 @@ export default class WindowObstacle extends BaseObstacle {
       return;
     }
 
+    this.setVisible(false);
     this.emitter.setSpeed({ min: speed, max: speed * 2 });
     this.particle.emitParticleAt(this.x + this.width / 2, this.y + this.height / 2);
     this.isCrashed = true;
