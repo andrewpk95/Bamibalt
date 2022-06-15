@@ -2,6 +2,7 @@ import DescriptionButton from 'src/components/buttons/descriptionButton';
 import StartButton from 'src/components/buttons/startButton';
 import TextComponent from 'src/components/text';
 import BaseScene from 'src/scenes/base';
+import API from 'src/util/api';
 
 export default class TitleScene extends BaseScene {
   constructor() {
@@ -11,7 +12,13 @@ export default class TitleScene extends BaseScene {
   }
 
   create() {
-    const text = new TextComponent(this, {
+    const highScoreText = new TextComponent(this, {
+      string: `HIGH SCORE: ${API.getHighScore()}`,
+      style: {
+        fontSize: '50px',
+      },
+    });
+    const titleText = new TextComponent(this, {
       key: 'TitleScene_Title',
       style: {
         fontSize: '150px',
@@ -21,6 +28,10 @@ export default class TitleScene extends BaseScene {
     const startButton = new StartButton(this);
     const descriptionButton = new DescriptionButton(this);
 
+    this.rexUI.add.anchor(highScoreText, {
+      left: '0%+50',
+      top: '0%+50',
+    });
     this.rexUI.add.sizer({
       orientation: 'vertical',
       anchor: {
@@ -28,7 +39,7 @@ export default class TitleScene extends BaseScene {
         y: 'center',
       },
     })
-      .add(text)
+      .add(titleText)
       .add(startButton, {
         padding: {
           top: 50,

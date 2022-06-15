@@ -2,6 +2,7 @@ import RetryButton from 'src/components/buttons/retryButton';
 import ToTitleButton from 'src/components/buttons/toTitleButton';
 import TextComponent from 'src/components/text';
 import BaseScene from 'src/scenes/base';
+import API from 'src/util/api';
 
 export default class ResultScene extends BaseScene {
   private result: any;
@@ -20,6 +21,7 @@ export default class ResultScene extends BaseScene {
   }
 
   create() {
+    const score = this.result.record;
     const text = new TextComponent(this, {
       x: 500,
       y: 500,
@@ -32,6 +34,7 @@ export default class ResultScene extends BaseScene {
     const retryButton = new RetryButton(this);
     const toTitleButton = new ToTitleButton(this);
 
+    API.setHighScore(score);
     this.rexUI.add.sizer({
       orientation: 'horizontal',
       anchor: {
