@@ -4,6 +4,12 @@ import YuriSpriteSheet from 'src/assets/images/yuri.png';
 import YuriSpriteAtlas from 'src/assets/images/yuri.json';
 import EstelleSpriteSheet from 'src/assets/images/estelle.png';
 import EstelleSpriteAtlas from 'src/assets/images/estelle.json';
+import ObjectSpriteSheet from 'src/assets/images/object.png';
+import ObjectSpriteAtlas from 'src/assets/images/object.json';
+import GroundImage from 'src/assets/images/ground.png';
+import BuildingTopImage from 'src/assets/images/building_top.png';
+import BuildingInsideImage from 'src/assets/images/building_inside.png';
+import BuildingBottomImage from 'src/assets/images/building_bottom.png';
 
 import BamibaltMusic from 'src/assets/sounds/Bamibalt_Theme.mp3';
 
@@ -37,6 +43,11 @@ export default class LoadingScene extends BaseScene {
     this.load.atlas(Texture.Bamiko, BamikoSpriteSheet, BamikoSpriteAtlas);
     this.load.atlas(Texture.Yuri, YuriSpriteSheet, YuriSpriteAtlas);
     this.load.atlas(Texture.Estelle, EstelleSpriteSheet, EstelleSpriteAtlas);
+    this.load.atlas(Texture.Object, ObjectSpriteSheet, ObjectSpriteAtlas);
+    this.load.image(Texture.Ground, GroundImage);
+    this.load.image(Texture.BuildingTop, BuildingTopImage);
+    this.load.image(Texture.BuildingInside, BuildingInsideImage);
+    this.load.image(Texture.BuildingBottom, BuildingBottomImage);
 
     this.load.audio(Music.Bamibalt, BamibaltMusic);
 

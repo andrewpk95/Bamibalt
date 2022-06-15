@@ -1,4 +1,8 @@
 import BaseObstacle from 'src/components/game/obstacles/base';
+import { Texture } from 'src/types/image';
+
+const FLY_ANIMATION_KEY = 'estelle_fly_';
+const HURT_FRAME = 'estelle_hurt_0000';
 
 export default class PlaneObstacle extends BaseObstacle {
   private ground: number;
@@ -10,22 +14,30 @@ export default class PlaneObstacle extends BaseObstacle {
 
   protected initialize(): void {
     this
-      .setSize(280, 120)
-      .setFillStyle(0xffff33)
+      .setTexture(Texture.Estelle, HURT_FRAME)
       .setOrigin(0, 0);
 
     this.scene.physics.add.existing(this, false);
     this.body.setSize(200, 90, false)
       .setOffset(40, 20);
 
-    this.particle = this.scene.add.particles('a');
+    this.scene.anims.create({
+      key: FLY_ANIMATION_KEY,
+      frames: this.scene.anims.generateFrameNames(Texture.Estelle, {
+        prefix: FLY_ANIMATION_KEY, end: 2, zeroPad: 4,
+      }),
+      frameRate: 12,
+      repeat: -1,
+    });
+
+    this.particle = this.scene.add.particles(Texture.Estelle, HURT_FRAME);
     this.emitter = this.particle.createEmitter({
       quantity: 1,
       angle: { min: -45, max: -30 },
       speed: { min: 400, max: 1000 },
-      rotate: { start: 0, end: 360 * 10 },
+      rotate: { start: 0, end: 360 * 8 },
       gravityY: 3000,
-      lifespan: 2000,
+      lifespan: { min: 2000, max: 4000 },
       frequency: -1,
     });
   }
@@ -73,6 +85,7 @@ export default class PlaneObstacle extends BaseObstacle {
   kill(): this {
     super.kill();
     this.timeline?.stop();
+    this.stop();
 
     return this;
   }
@@ -80,6 +93,8 @@ export default class PlaneObstacle extends BaseObstacle {
   reset(x: number, y: number, ground: number): this {
     this.isFlying = false;
     this.ground = ground;
+    this.play(FLY_ANIMATION_KEY);
+
     return super.reset(x, y);
   }
 }

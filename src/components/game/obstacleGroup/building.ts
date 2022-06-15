@@ -13,6 +13,6 @@ export default class BuildingObstacleGroup extends BaseObstacleGroup {
 
     this.buildingPool.get(x, y);
     this.windowPool.get(x, y - height);
-    this.windowPool.get(x + this.width - 30, y - height);
+    this.windowPool.get(x + this.width - 10, y - height);
   }
 }

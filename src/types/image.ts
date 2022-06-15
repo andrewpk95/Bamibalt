@@ -13,4 +13,5 @@ export enum Frame {
   Box = 'box',
   Window = 'window',
   BillBoard = 'billboard',
+  Platform = 'platform',
 }

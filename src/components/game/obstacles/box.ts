@@ -1,4 +1,5 @@
 import BaseObstacle from 'src/components/game/obstacles/base';
+import { Frame, Texture } from 'src/types/image';
 
 export default class BoxObstacle extends BaseObstacle {
   private particle: Phaser.GameObjects.Particles.ParticleEmitterManager;
@@ -6,15 +7,14 @@ export default class BoxObstacle extends BaseObstacle {
 
   protected initialize(): void {
     this
-      .setSize(100, 100)
-      .setFillStyle(0xff3333)
+      .setTexture(Texture.Object, Frame.Box)
       .setOrigin(0, 0);
 
     this.scene.physics.add.existing(this, false);
     this.body.setSize(80, 90, false)
       .setOffset(10, 10);
 
-    this.particle = this.scene.add.particles('a');
+    this.particle = this.scene.add.particles(Texture.Object, Frame.Box);
     this.emitter = this.particle.createEmitter({
       quantity: 1,
       angle: { min: -45, max: -30 },

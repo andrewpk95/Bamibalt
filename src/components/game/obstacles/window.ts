@@ -1,5 +1,5 @@
-import GameSettings from 'src/assets/settings';
 import BaseObstacle from 'src/components/game/obstacles/base';
+import { Frame, Texture } from 'src/types/image';
 
 export default class WindowObstacle extends BaseObstacle {
   private isCrashed: boolean = false;
@@ -7,17 +7,15 @@ export default class WindowObstacle extends BaseObstacle {
   private emitter: Phaser.GameObjects.Particles.ParticleEmitter;
 
   protected initialize(): void {
-    const { height } = GameSettings.obstacle.building;
-
     this
-      .setSize(30, height)
-      .setFillStyle(0x3333ff)
-      .setAlpha(0.5)
+      .setTexture(Texture.Object, Frame.Window)
       .setOrigin(0, 0);
 
     this.scene.physics.add.existing(this, true);
-    this.particle = this.scene.add.particles('a');
+
+    this.particle = this.scene.add.particles(Texture.Object);
     this.emitter = this.particle.createEmitter({
+      frame: [0, 1, 2, 3, 4].map((i) => `window_shard_0${i}`),
       quantity: 20,
       angle: { min: -45, max: 45 },
       speed: { min: 400, max: 1000 },

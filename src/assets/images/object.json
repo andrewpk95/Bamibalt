@@ -4,8 +4,8 @@
 			"image": "object.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 602,
-				"h": 1704
+				"w": 614,
+				"h": 1508
 			},
 			"scale": 1,
 			"frames": [
@@ -45,10 +45,52 @@
 						"h": 300
 					},
 					"frame": {
-						"x": 1,
-						"y": 1403,
+						"x": 603,
+						"y": 1,
 						"w": 10,
 						"h": 300
+					}
+				},
+				{
+					"filename": "window_shard_01",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 20,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 4,
+						"w": 10,
+						"h": 11
+					},
+					"frame": {
+						"x": 603,
+						"y": 303,
+						"w": 10,
+						"h": 11
+					}
+				},
+				{
+					"filename": "window_shard_02",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 20,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 3,
+						"w": 7,
+						"h": 12
+					},
+					"frame": {
+						"x": 603,
+						"y": 316,
+						"w": 7,
+						"h": 12
 					}
 				},
 				{
@@ -66,10 +108,31 @@
 						"h": 100
 					},
 					"frame": {
-						"x": 13,
+						"x": 1,
 						"y": 1403,
 						"w": 100,
 						"h": 100
+					}
+				},
+				{
+					"filename": "platform",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 600,
+						"h": 2
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 600,
+						"h": 2
+					},
+					"frame": {
+						"x": 1,
+						"y": 1505,
+						"w": 600,
+						"h": 2
 					}
 				},
 				{
@@ -87,8 +150,8 @@
 						"h": 18
 					},
 					"frame": {
-						"x": 13,
-						"y": 1505,
+						"x": 103,
+						"y": 1403,
 						"w": 14,
 						"h": 18
 					}
@@ -108,52 +171,10 @@
 						"h": 15
 					},
 					"frame": {
-						"x": 13,
-						"y": 1525,
+						"x": 103,
+						"y": 1423,
 						"w": 20,
 						"h": 15
-					}
-				},
-				{
-					"filename": "window_shard_02",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 20,
-						"h": 20
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 3,
-						"w": 7,
-						"h": 12
-					},
-					"frame": {
-						"x": 29,
-						"y": 1505,
-						"w": 7,
-						"h": 12
-					}
-				},
-				{
-					"filename": "window_shard_01",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 20,
-						"h": 20
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 4,
-						"w": 10,
-						"h": 11
-					},
-					"frame": {
-						"x": 13,
-						"y": 1542,
-						"w": 10,
-						"h": 11
 					}
 				},
 				{
@@ -171,8 +192,8 @@
 						"h": 8
 					},
 					"frame": {
-						"x": 13,
-						"y": 1555,
+						"x": 119,
+						"y": 1403,
 						"w": 20,
 						"h": 8
 					}
@@ -183,6 +204,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:3fed3c92a3a5306851eb17dcb9e5db35:6bff16ce7d8f497f5aaecbfab67ce53c:0862de17022a6d35947ec7958362445d$"
+		"smartupdate": "$TexturePacker:SmartUpdate:edccf0157305b3b1080c0d8833d35be6:0a2d8bb5a71f8c5b98620ccefcfa7a97:0862de17022a6d35947ec7958362445d$"
 	}
 }

@@ -2,13 +2,13 @@ import Phaser from 'phaser';
 import Bamiko from 'src/components/game/bamiko';
 import Poolable from 'src/components/objectPool/poolable';
 
-export default abstract class BaseObstacle
-  extends Phaser.GameObjects.Rectangle implements Poolable {
+export default abstract class BaseObstacle extends Phaser.GameObjects.Sprite implements Poolable {
   body: Phaser.Physics.Arcade.Body;
+
   protected bamiko: Bamiko;
 
   constructor(scene: Phaser.Scene, bamiko: Bamiko) {
-    super(scene, 0, 0);
+    super(scene, 0, 0, '');
     this.name = `${Phaser.Math.Between(1, 100000000)}`;
 
     this.bamiko = bamiko;
