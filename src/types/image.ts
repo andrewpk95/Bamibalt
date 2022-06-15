@@ -2,12 +2,15 @@ export enum Texture {
   Bamiko = 'bamiko',
   Yuri = 'yuri',
   Estelle = 'estelle',
+  Object = 'object',
+  Ground = 'ground',
+  BuildingTop = 'buildingtop',
+  BuildingBottom = 'buildingbottom',
+  BuildingInside = 'buildinginside',
 }
 
 export enum Frame {
-  Ground = 'ground',
   Box = 'box',
-  Building = 'building',
   Window = 'window',
   BillBoard = 'billboard',
 }
