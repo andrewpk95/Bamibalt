@@ -21,6 +21,7 @@ export default class WindowObstacle extends BaseObstacle {
       quantity: 20,
       angle: { min: -45, max: 45 },
       speed: { min: 400, max: 1000 },
+      rotate: { start: 0, end: 720 },
       gravityY: 3000,
       lifespan: { min: 1000, max: 2000 },
       frequency: -1,

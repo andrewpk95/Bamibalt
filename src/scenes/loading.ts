@@ -1,7 +1,19 @@
+import BamikoSpriteSheet from 'src/assets/images/bamiko.png';
+import BamikoSpriteAtlas from 'src/assets/images/bamiko.json';
+import YuriSpriteSheet from 'src/assets/images/yuri.png';
+import YuriSpriteAtlas from 'src/assets/images/yuri.json';
+import EstelleSpriteSheet from 'src/assets/images/estelle.png';
+import EstelleSpriteAtlas from 'src/assets/images/estelle.json';
+
+import BamibaltMusic from 'src/assets/sounds/Bamibalt_Theme.mp3';
+
 import PlayButton from 'src/components/buttons/playButton';
 import BaseScene from 'src/scenes/base';
 import GameUIScene from 'src/scenes/gameUI';
 import PopupScene from 'src/scenes/popup';
+import { Texture } from 'src/types/image';
+import { Music } from 'src/types/sound';
+import TextComponent from 'src/components/text';
 
 export default class LoadingScene extends BaseScene {
   constructor() {
@@ -11,7 +23,30 @@ export default class LoadingScene extends BaseScene {
   }
 
   preload() {
-    // TODO: Load images and sounds
+    const loadingText = new TextComponent(this, {
+      style: {
+        fontSize: '50px',
+        color: '#ffffff',
+      },
+    }).setOrigin(0.5, 0.5);
+    const anchor = this.rexUI.add.anchor(loadingText, {
+      x: 'center',
+      y: '100%-200',
+    });
+
+    this.load.atlas(Texture.Bamiko, BamikoSpriteSheet, BamikoSpriteAtlas);
+    this.load.atlas(Texture.Yuri, YuriSpriteSheet, YuriSpriteAtlas);
+    this.load.atlas(Texture.Estelle, EstelleSpriteSheet, EstelleSpriteAtlas);
+
+    this.load.audio(Music.Bamibalt, BamibaltMusic);
+
+    this.load.on('progress', (value: number) => {
+      loadingText.setText(`${Math.round(value * 100)}%`);
+      anchor.anchor();
+    });
+    this.load.once('complete', () => {
+      loadingText.setVisible(false);
+    });
   }
 
   create() {

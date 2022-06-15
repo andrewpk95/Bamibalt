@@ -8,8 +8,9 @@ export default class PlaneObstaclePool extends BaseObstaclePool<PlaneObstacle> {
     super(scene, PlaneObstacle, bamiko);
 
     this.group = scene.physics.add.group({ allowGravity: false });
-    scene.physics.add.overlap(bamiko, this.group, (_, plane) => {
-      this.return(plane as PlaneObstacle);
+    scene.physics.add.overlap(bamiko, this.group, (player, plane: PlaneObstacle) => {
+      plane.crash(player.body.velocity.x);
+      this.return(plane);
       this.bamiko.takeDamage();
     });
   }

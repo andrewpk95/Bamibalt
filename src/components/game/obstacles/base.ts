@@ -50,6 +50,9 @@ export default abstract class BaseObstacle
   }
 
   destroy(fromScene?: boolean): void {
+    if (!this.scene) {
+      return;
+    }
     this.scene.events.off('update', this.handleUpdate);
 
     super.destroy(fromScene);
