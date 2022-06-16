@@ -1,16 +1,19 @@
 import BaseObstacle from 'src/components/game/obstacles/base';
 import { Frame, Texture } from 'src/types/image';
+import ZIndex from 'src/types/zIndex';
 
 export default class PlatformObstacle extends BaseObstacle {
   private billboard: Phaser.GameObjects.Sprite;
 
   protected initialize(): void {
     const billboard = this.scene.add.sprite(0, 0, Texture.Object, Frame.BillBoard)
-      .setOrigin(0, 0);
+      .setOrigin(0, 0)
+      .setDepth(ZIndex.Obstacles);
 
     this
       .setTexture(Texture.Object, Frame.Platform)
-      .setOrigin(0, 0);
+      .setOrigin(0, 0)
+      .setDepth(ZIndex.Obstacles);
 
     this.billboard = billboard;
     this.scene.physics.add.existing(this, true);

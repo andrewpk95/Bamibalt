@@ -1,6 +1,7 @@
 import GameSettings from 'src/assets/settings';
 import BaseObstacle from 'src/components/game/obstacles/base';
 import { Texture } from 'src/types/image';
+import ZIndex from 'src/types/zIndex';
 
 export default class BuildingObstacle extends BaseObstacle {
   public buildingTop: Phaser.GameObjects.Sprite;
@@ -8,13 +9,16 @@ export default class BuildingObstacle extends BaseObstacle {
 
   protected initialize(): void {
     const buildingInside = this.scene.add.sprite(0, 0, Texture.BuildingInside)
-      .setOrigin(0, 0.5);
+      .setOrigin(0, 0.5)
+      .setDepth(ZIndex.BuildingInside);
     const buildingTop = this.scene.add.sprite(0, 0, Texture.BuildingTop)
-      .setOrigin(0, 1);
+      .setOrigin(0, 1)
+      .setDepth(ZIndex.Building);
 
     this
       .setTexture(Texture.BuildingBottom)
-      .setOrigin(0, 0);
+      .setOrigin(0, 0)
+      .setDepth(ZIndex.Building);
 
     this.buildingTop = buildingTop;
     this.buildingInside = buildingInside;

@@ -3,6 +3,7 @@ import GameSettings from 'src/assets/settings';
 import Bamiko from 'src/components/game/bamiko';
 import Difficulty from 'src/components/game/difficulty';
 import { Texture } from 'src/types/image';
+import ZIndex from 'src/types/zIndex';
 
 const RUN_ANIMATION_KEY = 'yuri_run_';
 const JUMP_FRAME = 'yuri_jump_0000';
@@ -17,6 +18,7 @@ export default class Yuri extends Phaser.GameObjects.Sprite {
   constructor(scene: Phaser.Scene, bamiko: Bamiko, difficulty: Difficulty) {
     super(scene, -GameSettings.yuri.followDistance, 0, Texture.Yuri);
 
+    this.setDepth(ZIndex.Yuri);
     this.bamiko = bamiko;
     this.difficulty = difficulty;
     this.scene.add.existing(this);

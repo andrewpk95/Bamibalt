@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import GameSettings from 'src/assets/settings';
 import Difficulty from 'src/components/game/difficulty';
 import { Texture } from 'src/types/image';
+import ZIndex from 'src/types/zIndex';
 
 enum JumpState {
   None,
@@ -43,7 +44,8 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
 
-    this.setOrigin(0.5, 0.5);
+    this.setOrigin(0.5, 0.5)
+      .setDepth(ZIndex.Bamiko);
     this.body.setSize(60, 130, false)
       .setOffset(30, 35);
     this.body.velocity.x = this.difficulty.getDifficultySettings().minSpeed;

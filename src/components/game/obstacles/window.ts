@@ -1,5 +1,6 @@
 import BaseObstacle from 'src/components/game/obstacles/base';
 import { Frame, Texture } from 'src/types/image';
+import ZIndex from 'src/types/zIndex';
 
 export default class WindowObstacle extends BaseObstacle {
   private isCrashed: boolean = false;
@@ -9,11 +10,13 @@ export default class WindowObstacle extends BaseObstacle {
   protected initialize(): void {
     this
       .setTexture(Texture.Object, Frame.Window)
-      .setOrigin(0, 0);
+      .setOrigin(0, 0)
+      .setDepth(ZIndex.Obstacles);
 
     this.scene.physics.add.existing(this, true);
 
-    this.particle = this.scene.add.particles(Texture.Object);
+    this.particle = this.scene.add.particles(Texture.Object)
+      .setDepth(ZIndex.Obstacles);
     this.emitter = this.particle.createEmitter({
       frame: [0, 1, 2, 3, 4].map((i) => `window_shard_0${i}`),
       quantity: 20,

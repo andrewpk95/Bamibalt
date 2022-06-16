@@ -1,5 +1,6 @@
 import BaseObstacle from 'src/components/game/obstacles/base';
 import { Texture } from 'src/types/image';
+import ZIndex from 'src/types/zIndex';
 
 const FLY_ANIMATION_KEY = 'estelle_fly_';
 const HURT_FRAME = 'estelle_hurt_0000';
@@ -15,7 +16,8 @@ export default class PlaneObstacle extends BaseObstacle {
   protected initialize(): void {
     this
       .setTexture(Texture.Estelle, HURT_FRAME)
-      .setOrigin(0, 0);
+      .setOrigin(0, 0)
+      .setDepth(ZIndex.Obstacles);
 
     this.scene.physics.add.existing(this, false);
     this.body.setSize(200, 90, false)
@@ -30,7 +32,8 @@ export default class PlaneObstacle extends BaseObstacle {
       repeat: -1,
     });
 
-    this.particle = this.scene.add.particles(Texture.Estelle, HURT_FRAME);
+    this.particle = this.scene.add.particles(Texture.Estelle, HURT_FRAME)
+      .setDepth(ZIndex.Obstacles);
     this.emitter = this.particle.createEmitter({
       quantity: 1,
       angle: { min: -45, max: -30 },
