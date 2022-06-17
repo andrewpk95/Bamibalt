@@ -3,7 +3,7 @@ import GameSettings from 'src/assets/settings';
 
 export default class Difficulty extends Phaser.GameObjects.Container {
   private currentTime: number = 0;
-  private currentLevel: number = 0;
+  private currentLevel: number = 1;
 
   constructor(scene: Phaser.Scene) {
     super(scene);
@@ -13,7 +13,7 @@ export default class Difficulty extends Phaser.GameObjects.Container {
   }
 
   update(time: number, delta: number): void {
-    if (this.currentLevel === GameSettings.difficulty.maxLevel) {
+    if (this.currentLevel === this.getMaxLevel()) {
       return;
     }
     const deltaTime = delta / 1000;
@@ -29,7 +29,11 @@ export default class Difficulty extends Phaser.GameObjects.Container {
   }
 
   public getDifficultySettings() {
-    return GameSettings.difficulty.levels[this.currentLevel];
+    return GameSettings.difficulty.levels[this.currentLevel - 1];
+  }
+
+  public getMaxLevel() {
+    return GameSettings.difficulty.levels.length;
   }
 
   destroy(fromScene?: boolean): void {

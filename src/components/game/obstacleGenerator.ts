@@ -23,11 +23,11 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene, { bamiko, difficulty }: ObstacleGeneratorOptions) {
     super(scene);
 
-    const groundObstacleGroup = new GroundObstacleGroup(scene, bamiko);
-    const boxObstacleGroup = new BoxObstacleGroup(scene, bamiko);
-    const buildingObstacleGroup = new BuildingObstacleGroup(scene, bamiko);
-    const planeObstacleGroup = new PlaneObstacleGroup(scene, bamiko);
-    const platformObstacleGroup = new PlatformObstacleGroup(scene, bamiko);
+    const groundObstacleGroup = new GroundObstacleGroup(scene, bamiko, difficulty);
+    const boxObstacleGroup = new BoxObstacleGroup(scene, bamiko, difficulty);
+    const buildingObstacleGroup = new BuildingObstacleGroup(scene, bamiko, difficulty);
+    const planeObstacleGroup = new PlaneObstacleGroup(scene, bamiko, difficulty);
+    const platformObstacleGroup = new PlatformObstacleGroup(scene, bamiko, difficulty);
 
     this.bamiko = bamiko;
     this.difficulty = difficulty;
@@ -51,7 +51,7 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
       const randomObstacleGroup = Phaser.Math.RND.pick(this.obstacleGroups);
 
       this.currentObstacleY += Phaser.Math.Between(1, 4) * 50 * Phaser.Math.RND.sign();
-      this.currentObstacleY = Phaser.Math.Clamp(this.currentObstacleY, 0, 1000);
+      this.currentObstacleY = Phaser.Math.Clamp(this.currentObstacleY, 200, 1000);
 
       this.spawnObstacle(randomObstacleGroup);
     }
@@ -60,7 +60,7 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
   private spawnObstacle(obstacleGroup: BaseObstacleGroup, y?: number) {
     obstacleGroup.spawn(this.currentObstacleX, y ?? this.currentObstacleY);
 
-    this.currentObstacleX += obstacleGroup.width + this.difficulty.getDifficultySettings().minSpeed;
+    this.currentObstacleX += obstacleGroup.width + this.difficulty.getDifficultySettings().gap;
   }
 
   destroy(fromScene?: boolean): void {

@@ -20,7 +20,7 @@ export default class WindowObstacle extends BaseObstacle {
     this.emitter = this.particle.createEmitter({
       frame: [0, 1, 2, 3, 4].map((i) => `window_shard_0${i}`),
       quantity: 20,
-      angle: { min: -45, max: 45 },
+      angle: { min: -45, max: 0 },
       speed: { min: 400, max: 1000 },
       rotate: { start: 0, end: 720 },
       gravityY: 3000,
@@ -35,8 +35,9 @@ export default class WindowObstacle extends BaseObstacle {
     }
 
     this.setVisible(false);
+    this.emitter.setEmitZone({ type: 'random', source: this.getBounds() });
     this.emitter.setSpeed({ min: speed, max: speed * 2 });
-    this.particle.emitParticleAt(this.x + this.width / 2, this.y + this.height / 2);
+    this.particle.emitParticle();
     this.isCrashed = true;
   }
 
