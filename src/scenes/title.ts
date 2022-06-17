@@ -1,4 +1,5 @@
 import DescriptionButton from 'src/components/buttons/descriptionButton';
+import MuteButton from 'src/components/buttons/muteButton';
 import StartButton from 'src/components/buttons/startButton';
 import TextComponent from 'src/components/text';
 import BaseScene from 'src/scenes/base';
@@ -27,10 +28,17 @@ export default class TitleScene extends BaseScene {
       .setOrigin(0.5, 0.5);
     const startButton = new StartButton(this);
     const descriptionButton = new DescriptionButton(this);
+    const muteButton = new MuteButton(this, {
+      muteColor: 0xaaaaaa, tintColor: 0x444444,
+    });
 
     this.rexUI.add.anchor(highScoreText, {
       left: '0%+50',
       top: '0%+50',
+    });
+    this.rexUI.add.anchor(muteButton, {
+      right: '100%-100',
+      top: '0%+100',
     });
     this.rexUI.add.sizer({
       orientation: 'vertical',
