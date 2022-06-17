@@ -23,7 +23,8 @@ export default class RoundRectangleButton extends BaseButton<RoundRectangleButto
   protected createUI({
     width, height, key, style, radius = 0, color = 0xffffff, tintColor = 0xaaaaaa,
   }: RoundRectangleButtonOptions): Phaser.GameObjects.GameObject {
-    const roundRectangle = this.rexUI.add.roundRectangle(0, 0, width, height, radius, color);
+    const roundRectangle = this.rexUI.add.roundRectangle(0, 0, width, height, radius, color)
+      .setStrokeStyle(5, 0x000000);
     const text = new TextComponent(this.scene, { key, style })
       .setOrigin(0.5, 0.5);
 
