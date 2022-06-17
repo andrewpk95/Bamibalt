@@ -1,6 +1,7 @@
 import GameSettings from 'src/assets/settings';
 import Bamiko from 'src/components/game/bamiko';
 import Difficulty from 'src/components/game/difficulty';
+import MusicPlayer from 'src/components/game/musicPlayer';
 import ObstacleGenerator from 'src/components/game/obstacleGenerator';
 import Yuri from 'src/components/game/yuri';
 import BaseScene from 'src/scenes/base';
@@ -15,6 +16,7 @@ export default class GameScene extends BaseScene {
   private bamiko: Bamiko;
   private yuri: Yuri;
   private obstacleGenerator: ObstacleGenerator;
+  private musicPlayer: MusicPlayer;
 
   constructor() {
     super({
@@ -34,11 +36,13 @@ export default class GameScene extends BaseScene {
     const obstacleGenerator = new ObstacleGenerator(this, {
       bamiko, difficulty,
     });
+    const musicPlayer = new MusicPlayer(this);
 
     this.difficulty = difficulty;
     this.bamiko = bamiko;
     this.yuri = yuri;
     this.obstacleGenerator = obstacleGenerator;
+    this.musicPlayer = musicPlayer;
 
     this.targetOffsetX = GameSettings.camera.offsetX;
 
@@ -60,6 +64,7 @@ export default class GameScene extends BaseScene {
   private handleDamage() {
     console.warn('ouch');
     this.yuri.toggleFollow(true);
+    this.musicPlayer.switchToYuriTheme();
     this.cameras.main.shake(250, 0.01, true);
     this.cameraTween?.stop();
     this.cameraTween = this.tweens.add({
@@ -72,6 +77,7 @@ export default class GameScene extends BaseScene {
 
   private handleRecover() {
     console.warn('recovered');
+    this.musicPlayer.switchToBamibaltTheme();
     this.cameraTween?.stop();
     this.cameraTween = this.tweens.add({
       targets: this,
@@ -87,6 +93,12 @@ export default class GameScene extends BaseScene {
   private handleSplatDeath() {
     console.warn('splat');
     this.cameras.main.shake(250, 0.01, true);
+    this.musicPlayer.stop();
+
+    if (this.bamiko.isDamaged) {
+      this.catchDeath();
+      return;
+    }
 
     const timeline = this.tweens.createTimeline()
       .add({
@@ -104,12 +116,49 @@ export default class GameScene extends BaseScene {
 
   private handleDamageDeath() {
     console.warn('caught!');
+
+    this.cameras.main.shake(250, 0.01, true);
+    this.musicPlayer.stop();
+
+    this.catchDeath();
+  }
+
+  private handleFallDeath() {
+    console.warn('fell!');
+    this.musicPlayer.stop();
+
+    if (this.bamiko.isDamaged) {
+      this.catchDeath();
+      return;
+    }
+
+    const timeline = this.tweens.createTimeline()
+      .add({
+        targets: this.bamiko,
+        y: '+=200',
+        duration: 500,
+        onComplete: () => {
+          this.cameras.main.shake(250, 0.01, true);
+        },
+      })
+      .add({
+        targets: this.bamiko,
+        y: '+=200',
+        duration: 500,
+        onComplete: () => {
+          this.gameOver();
+        },
+      });
+
+    timeline.play();
+  }
+
+  private catchDeath() {
     const { followDistance } = GameSettings.yuri;
     const { maxSpeed } = this.difficulty.getDifficultySettings();
     const catchUpDuration = (followDistance / maxSpeed) * 1000;
 
     this.yuri.toggleFollow(false);
-    this.cameras.main.shake(250, 0.01, true);
 
     const timeline = this.tweens.createTimeline()
       .add({
@@ -139,30 +188,6 @@ export default class GameScene extends BaseScene {
         angle: Phaser.Math.Between(1, 10) * 90,
         duration: 1000,
         offset: catchUpDuration,
-      });
-
-    timeline.play();
-  }
-
-  private handleFallDeath() {
-    console.warn('fell!');
-
-    const timeline = this.tweens.createTimeline()
-      .add({
-        targets: this.bamiko,
-        y: '+=200',
-        duration: 500,
-        onComplete: () => {
-          this.cameras.main.shake(250, 0.01, true);
-        },
-      })
-      .add({
-        targets: this.bamiko,
-        y: '+=200',
-        duration: 500,
-        onComplete: () => {
-          this.gameOver();
-        },
       });
 
     timeline.play();
