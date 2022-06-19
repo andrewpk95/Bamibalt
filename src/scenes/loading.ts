@@ -1,4 +1,5 @@
 import TitleScreenImage from 'src/assets/images/title_screen.png';
+import GameOverScreenImage from 'src/assets/images/gameover_screen.png';
 
 import BamikoSpriteSheet from 'src/assets/images/bamiko.png';
 import BamikoSpriteAtlas from 'src/assets/images/bamiko.json';
@@ -43,6 +44,7 @@ export default class LoadingScene extends BaseScene {
     });
 
     this.load.image(Texture.TitleScreen, TitleScreenImage);
+    this.load.image(Texture.GameOverScreen, GameOverScreenImage);
     this.load.atlas(Texture.Bamiko, BamikoSpriteSheet, BamikoSpriteAtlas);
     this.load.atlas(Texture.Yuri, YuriSpriteSheet, YuriSpriteAtlas);
     this.load.atlas(Texture.Estelle, EstelleSpriteSheet, EstelleSpriteAtlas);

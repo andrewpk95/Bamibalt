@@ -1,5 +1,6 @@
 export enum Texture {
   TitleScreen = 'titlescreen',
+  GameOverScreen = 'gameoverscreen',
   Bamiko = 'bamiko',
   Yuri = 'yuri',
   Estelle = 'estelle',

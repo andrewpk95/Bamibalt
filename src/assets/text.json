@@ -17,10 +17,19 @@
     "PopupScene_Description_Content2": {
         "text": "얼마나 멀리 도망칠 수 있을 까...!"
     },
-    "ResultScene_Retry": {
+    "ResultScene_Title_Normal": {
+        "text": "나랑 즐거운 시간 보내자~"
+    },
+    "ResultScene_Title_Highscore": {
+        "text": "이번엔 꽤 멀리 도망갔네~?"
+    },
+    "ResultScene_Score": {
+        "text": "{0}m"
+    },
+    "ResultScene_Retry_Button": {
         "text": "다시하기"
     },
-    "ResultScene_Title": {
+    "ResultScene_Title_Button": {
         "text": "타이틀로"
     }
 }

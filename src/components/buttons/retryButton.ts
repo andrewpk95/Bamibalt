@@ -7,7 +7,7 @@ export default class RetryButton extends RoundRectangleButton {
       width: 200,
       height: 100,
       radius: 10,
-      key: 'ResultScene_Retry',
+      key: 'ResultScene_Retry_Button',
       style: {
         fontSize: '50px',
         color: '#000000',

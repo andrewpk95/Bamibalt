@@ -7,7 +7,7 @@ export default class ToTitleButton extends RoundRectangleButton {
       width: 200,
       height: 100,
       radius: 10,
-      key: 'ResultScene_Title',
+      key: 'ResultScene_Title_Button',
       style: {
         fontSize: '50px',
         color: '#000000',
