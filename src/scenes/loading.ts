@@ -15,13 +15,18 @@ import BuildingInsideImage from 'src/assets/images/building_inside.png';
 import BuildingBottomImage from 'src/assets/images/building_bottom.png';
 
 import BamibaltMusic from 'src/assets/sounds/Bamibalt_Theme.mp3';
+import HitSound from 'src/assets/sounds/hit.mp3';
+import JumpSound from 'src/assets/sounds/jump.mp3';
+import LandSound from 'src/assets/sounds/land.mp3';
+import SplatSound from 'src/assets/sounds/splat.mp3';
+import WindowBreakSound from 'src/assets/sounds/window_break.mp3';
 
 import PlayButton from 'src/components/buttons/playButton';
 import BaseScene from 'src/scenes/base';
 import GameUIScene from 'src/scenes/gameUI';
 import PopupScene from 'src/scenes/popup';
 import { Texture } from 'src/types/image';
-import { Music } from 'src/types/sound';
+import { Music, SFX } from 'src/types/sound';
 import TextComponent from 'src/components/text';
 
 export default class LoadingScene extends BaseScene {
@@ -55,6 +60,11 @@ export default class LoadingScene extends BaseScene {
     this.load.image(Texture.BuildingBottom, BuildingBottomImage);
 
     this.load.audio(Music.Bamibalt, BamibaltMusic);
+    this.load.audio(SFX.Collision, HitSound);
+    this.load.audio(SFX.Jump, JumpSound);
+    this.load.audio(SFX.Land, LandSound);
+    this.load.audio(SFX.Splat, SplatSound);
+    this.load.audio(SFX.WindowCrash, WindowBreakSound);
 
     this.load.on('progress', (value: number) => {
       loadingText.setText(`${Math.round(value * 100)}%`);

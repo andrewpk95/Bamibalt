@@ -8,4 +8,5 @@ export enum SFX {
   Jump = 'jump',
   Collision = 'collision',
   Splat = 'splat',
+  Land = 'land',
 }

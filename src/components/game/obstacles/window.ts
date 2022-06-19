@@ -1,5 +1,6 @@
 import BaseObstacle from 'src/components/game/obstacles/base';
 import { Frame, Texture } from 'src/types/image';
+import { SFX } from 'src/types/sound';
 import ZIndex from 'src/types/zIndex';
 
 export default class WindowObstacle extends BaseObstacle {
@@ -34,6 +35,7 @@ export default class WindowObstacle extends BaseObstacle {
       return;
     }
 
+    this.scene.sound.play(SFX.WindowCrash);
     this.setVisible(false);
     this.emitter.setEmitZone({ type: 'random', source: this.getBounds() });
     this.emitter.setSpeed({ min: speed, max: speed * 2 });

@@ -6,6 +6,7 @@ import ObstacleGenerator from 'src/components/game/obstacleGenerator';
 import Yuri from 'src/components/game/yuri';
 import BaseScene from 'src/scenes/base';
 import GameUIScene from 'src/scenes/gameUI';
+import { SFX } from 'src/types/sound';
 
 export default class GameScene extends BaseScene {
   private targetOffsetX: number;
@@ -139,6 +140,7 @@ export default class GameScene extends BaseScene {
         duration: 500,
         onComplete: () => {
           this.cameras.main.shake(250, 0.01, true);
+          this.sound.play(SFX.Collision);
         },
       })
       .add({
@@ -188,6 +190,9 @@ export default class GameScene extends BaseScene {
         angle: Phaser.Math.Between(1, 10) * 90,
         duration: 1000,
         offset: catchUpDuration,
+        onStart: () => {
+          this.sound.play(SFX.Collision, { detune: 500 });
+        },
       });
 
     timeline.play();

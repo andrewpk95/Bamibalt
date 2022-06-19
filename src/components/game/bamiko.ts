@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import GameSettings from 'src/assets/settings';
 import Difficulty from 'src/components/game/difficulty';
 import { Texture } from 'src/types/image';
+import { SFX } from 'src/types/sound';
 import ZIndex from 'src/types/zIndex';
 
 enum JumpState {
@@ -78,9 +79,11 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     }
     if (this.isGrounded) {
       this.jumpState = JumpState.Jumping;
+      this.scene.sound.play(SFX.Jump);
     } else if (this.hasDoubleJump) {
       this.jumpState = JumpState.DoubleJumping;
       this.hasDoubleJump = false;
+      this.scene.sound.play(SFX.Jump, { detune: 300 });
     } else {
       return;
     }
@@ -99,6 +102,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     if (this.isDead) {
       return;
     }
+    this.scene.sound.play(SFX.Collision);
     const { minSpeed } = this.difficulty.getDifficultySettings();
 
     if (this.isDamaged) {
@@ -145,6 +149,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     if (this.isDead) {
       return;
     }
+    this.scene.sound.play(SFX.Splat);
     this.die();
     this.setX(x - this.width / 2);
     this.setFrame(SPLAT_FRAME);
@@ -178,6 +183,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     if (!this.wasGrounded && this.isGrounded) {
       this.hasDoubleJump = true;
       console.warn('grounded!');
+      this.scene.sound.play(SFX.Land);
       if (!this.damageTween) {
         this.play(RUN_ANIMATION_KEY);
       }
