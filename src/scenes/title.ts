@@ -28,9 +28,14 @@ export default class TitleScene extends BaseScene {
       key: 'TitleScene_Title',
       style: {
         color: '#ffffff',
-        fontSize: '160px',
+        fontSize: '180px',
         stroke: '#000000',
         strokeThickness: 20,
+        shadow: {
+          stroke: true,
+          color: '#',
+          blur: 10,
+        },
       },
     })
       .setOrigin(0.5, 0.5);
@@ -54,7 +59,7 @@ export default class TitleScene extends BaseScene {
     });
     this.rexUI.add.anchor(titleText, {
       x: 'center',
-      y: '20%',
+      y: '22%',
     });
     this.rexUI.add.sizer({
       orientation: 'vertical',
