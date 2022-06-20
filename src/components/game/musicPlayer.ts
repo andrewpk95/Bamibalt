@@ -18,9 +18,7 @@ export default class MusicPlayer extends Phaser.GameObjects.Container {
 
   private initializeComponents() {
     this.bamibalt = this.scene.sound.add(Music.Bamibalt, { loop: true });
-    this.yuriTheme = this.scene.sound.add(Music.Bamibalt, {
-      loop: true, volume: 0, rate: 1.2, detune: 400,
-    });
+    this.yuriTheme = this.scene.sound.add(Music.Yuri, { loop: true, volume: 0 });
   }
 
   private getFadeInTween(target: Phaser.Sound.BaseSound) {
