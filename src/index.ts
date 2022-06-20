@@ -20,7 +20,6 @@ function launchGame() {
     physics: {
       default: 'arcade',
       arcade: {
-        debug: true,
         gravity: { y: 3000 },
       },
     },

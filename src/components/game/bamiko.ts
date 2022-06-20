@@ -199,7 +199,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     }
 
     this.body.velocity.x = Phaser.Math.Clamp(this.body.velocity.x, 0, maxSpeed);
-    this.anims.timeScale = Phaser.Math.Clamp(this.body.velocity.x / 1000, 0.75, 1.5);
+    this.anims.timeScale = Phaser.Math.Clamp(this.body.velocity.x / 800, 1, 1.75);
 
     if (this.jumpState === JumpState.None) {
       return;
