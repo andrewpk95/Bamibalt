@@ -9,6 +9,8 @@ import { Music } from 'src/types/sound';
 import API from 'src/util/api';
 
 export default class TitleScene extends BaseScene {
+  private isTitleMusicPlayed: boolean = false;
+
   constructor() {
     super({
       key: 'TitleScene',
@@ -48,7 +50,13 @@ export default class TitleScene extends BaseScene {
     });
     const creditButton = new CreditButton(this);
 
-    this.sound.play(Music.Title);
+    if (!this.isTitleMusicPlayed) {
+      this.sound.play(Music.Title);
+    }
+
+    this.isTitleMusicPlayed = true;
+    this.cameras.main.fadeIn(400, 0, 0, 0);
+
     this.rexUI.add.anchor(titleScreen, {
       x: 'center',
       y: 'center',

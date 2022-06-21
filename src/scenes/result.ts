@@ -46,7 +46,8 @@ export default class ResultScene extends BaseScene {
     const retryButton = new RetryButton(this);
     const toTitleButton = new ToTitleButton(this);
 
-    this.sound.play(Music.GameOver);
+    this.cameras.main.fadeIn(1000, 0, 0, 0);
+    this.sound.play(Music.GameOver, { loop: true });
     API.setHighScore(score);
 
     this.rexUI.add.anchor(gameOverScreen, {

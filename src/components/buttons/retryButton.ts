@@ -17,6 +17,9 @@ export default class RetryButton extends RoundRectangleButton {
 
   protected onButtonUp(): void {
     super.onButtonUp();
-    this.scene.scene.start('GameScene');
+    this.scene.cameras.main.fadeOut(400, 0, 0, 0);
+    this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+      this.scene.scene.start('GameScene');
+    });
   }
 }
