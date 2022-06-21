@@ -3,6 +3,7 @@ import ToTitleButton from 'src/components/buttons/toTitleButton';
 import TextComponent from 'src/components/text';
 import BaseScene from 'src/scenes/base';
 import { Texture } from 'src/types/image';
+import { Music } from 'src/types/sound';
 import API from 'src/util/api';
 
 export default class ResultScene extends BaseScene {
@@ -45,6 +46,7 @@ export default class ResultScene extends BaseScene {
     const retryButton = new RetryButton(this);
     const toTitleButton = new ToTitleButton(this);
 
+    this.sound.play(Music.GameOver);
     API.setHighScore(score);
 
     this.rexUI.add.anchor(gameOverScreen, {
@@ -84,5 +86,9 @@ export default class ResultScene extends BaseScene {
       .add(retryButton)
       .add(toTitleButton)
       .layout();
+
+    this.events.once('shutdown', () => {
+      this.sound.stopByKey(Music.GameOver);
+    });
   }
 }

@@ -17,6 +17,7 @@ import BuildingBottomImage from 'src/assets/images/building_bottom.png';
 import TitleMusic from 'src/assets/sounds/Title_Theme.mp3';
 import BamibaltMusic from 'src/assets/sounds/Bamibalt_Theme.mp3';
 import YuriMusic from 'src/assets/sounds/Yuri_Mini_Theme.mp3';
+import GameOverMusic from 'src/assets/sounds/GameOver_Theme.mp3';
 import HitSound from 'src/assets/sounds/hit.mp3';
 import JumpSound from 'src/assets/sounds/jump.mp3';
 import LandSound from 'src/assets/sounds/land.mp3';
@@ -64,6 +65,7 @@ export default class LoadingScene extends BaseScene {
     this.load.audio(Music.Title, TitleMusic);
     this.load.audio(Music.Bamibalt, BamibaltMusic);
     this.load.audio(Music.Yuri, YuriMusic);
+    this.load.audio(Music.GameOver, GameOverMusic);
     this.load.audio(SFX.Collision, HitSound);
     this.load.audio(SFX.Jump, JumpSound);
     this.load.audio(SFX.Land, LandSound);
