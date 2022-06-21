@@ -5,6 +5,7 @@ import StartButton from 'src/components/buttons/startButton';
 import TextComponent from 'src/components/text';
 import BaseScene from 'src/scenes/base';
 import { Texture } from 'src/types/image';
+import { Music } from 'src/types/sound';
 import API from 'src/util/api';
 
 export default class TitleScene extends BaseScene {
@@ -47,6 +48,7 @@ export default class TitleScene extends BaseScene {
     });
     const creditButton = new CreditButton(this);
 
+    this.sound.play(Music.Title);
     this.rexUI.add.anchor(titleScreen, {
       x: 'center',
       y: 'center',
@@ -80,5 +82,9 @@ export default class TitleScene extends BaseScene {
       .add(startButton)
       .add(descriptionButton)
       .layout();
+
+    this.events.once('shutdown', () => {
+      this.sound.stopByKey(Music.Title);
+    });
   }
 }

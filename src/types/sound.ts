@@ -1,4 +1,5 @@
 export enum Music {
+  Title = 'title',
   Bamibalt = 'bamibalt',
   Yuri = 'yuri',
 }
