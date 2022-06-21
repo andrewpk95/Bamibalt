@@ -182,7 +182,6 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     }
     if (!this.wasGrounded && this.isGrounded) {
       this.hasDoubleJump = true;
-      console.warn('grounded!');
       this.scene.sound.play(SFX.Land);
       if (!this.damageTween) {
         this.play(RUN_ANIMATION_KEY);

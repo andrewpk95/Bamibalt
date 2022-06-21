@@ -63,7 +63,6 @@ export default class GameScene extends BaseScene {
   }
 
   private handleDamage() {
-    console.warn('ouch');
     this.yuri.toggleFollow(true);
     this.musicPlayer.switchToYuriTheme();
     this.cameras.main.shake(250, 0.01, true);
@@ -77,7 +76,6 @@ export default class GameScene extends BaseScene {
   }
 
   private handleRecover() {
-    console.warn('recovered');
     this.musicPlayer.switchToBamibaltTheme();
     this.cameraTween?.stop();
     this.cameraTween = this.tweens.add({
@@ -92,7 +90,6 @@ export default class GameScene extends BaseScene {
   }
 
   private handleSplatDeath() {
-    console.warn('splat');
     this.cameras.main.shake(250, 0.01, true);
     this.musicPlayer.stop();
 
@@ -116,8 +113,6 @@ export default class GameScene extends BaseScene {
   }
 
   private handleDamageDeath() {
-    console.warn('caught!');
-
     this.cameras.main.shake(250, 0.01, true);
     this.musicPlayer.stop();
 
@@ -125,7 +120,6 @@ export default class GameScene extends BaseScene {
   }
 
   private handleFallDeath() {
-    console.warn('fell!');
     this.musicPlayer.stop();
 
     if (this.bamiko.isDamaged) {
