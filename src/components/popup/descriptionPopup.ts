@@ -20,30 +20,38 @@ export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions
     const text1 = new TextComponent(this.scene, {
       key: 'PopupScene_Description_Content1',
       style: {
-        fontSize: '30px',
+        fontSize: '40px',
         color: '#000000',
       },
     });
+    const image1 = this.scene.add.rectangle(0, 0, 500, 300, 0x000000);
     const text2 = new TextComponent(this.scene, {
       key: 'PopupScene_Description_Content2',
       style: {
-        fontSize: '30px',
+        fontSize: '40px',
         color: '#000000',
       },
     });
+    const image2 = this.scene.add.rectangle(0, 0, 500, 300, 0x000000);
     const sizer = this.rexUI.add.sizer({
       orientation: 'vertical',
       space: {
         top: 50,
-        left: 20,
-        right: 20,
+        left: 25,
+        right: 25,
         bottom: 50,
         item: 20,
       },
     })
       .addBackground(background)
       .add(text1)
-      .add(text2);
+      .add(image1, {
+        padding: {
+          bottom: 50,
+        },
+      })
+      .add(text2)
+      .add(image2);
 
     this.text1 = text1;
     this.text2 = text2;

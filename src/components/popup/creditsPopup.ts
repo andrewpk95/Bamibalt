@@ -20,7 +20,7 @@ export default class CreditsPopup extends SizerPopup<CreditsPopupOptions> {
     const text1 = new TextComponent(this.scene, {
       key: 'PopupScene_Credits_Content1',
       style: {
-        fontSize: '30px',
+        fontSize: '40px',
         color: '#000000',
         align: 'center',
       },
@@ -28,7 +28,7 @@ export default class CreditsPopup extends SizerPopup<CreditsPopupOptions> {
     const text2 = new TextComponent(this.scene, {
       key: 'PopupScene_Credits_Content2',
       style: {
-        fontSize: '30px',
+        fontSize: '40px',
         color: '#000000',
         align: 'center',
       },
@@ -37,8 +37,8 @@ export default class CreditsPopup extends SizerPopup<CreditsPopupOptions> {
       orientation: 'vertical',
       space: {
         top: 50,
-        left: 20,
-        right: 20,
+        left: 25,
+        right: 25,
         bottom: 50,
         item: 20,
       },
