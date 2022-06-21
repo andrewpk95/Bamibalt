@@ -151,7 +151,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     }
     this.scene.sound.play(SFX.Splat);
     this.die();
-    this.setX(x - this.width / 2);
+    this.setX(x - this.width / 2 + 8);
     this.setFrame(SPLAT_FRAME);
     this.emit('splatdeath');
   }
