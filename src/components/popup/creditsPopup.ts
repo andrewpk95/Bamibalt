@@ -4,9 +4,9 @@ import SizerPopup from 'src/components/popup/sizerPopup';
 import TextComponent from 'src/components/text';
 import BaseScene from 'src/scenes/base';
 
-type DescriptionPopupOptions = BasePopupOptions;
+type CreditsPopupOptions = BasePopupOptions;
 
-export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions> {
+export default class CreditsPopup extends SizerPopup<CreditsPopupOptions> {
   private text1: TextComponent;
   private text2: TextComponent;
 
@@ -18,17 +18,19 @@ export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions
     const background = this.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0xffffff)
       .setStrokeStyle(7, 0xbd2018);
     const text1 = new TextComponent(this.scene, {
-      key: 'PopupScene_Description_Content1',
+      key: 'PopupScene_Credits_Content1',
       style: {
         fontSize: '30px',
         color: '#000000',
+        align: 'center',
       },
     });
     const text2 = new TextComponent(this.scene, {
-      key: 'PopupScene_Description_Content2',
+      key: 'PopupScene_Credits_Content2',
       style: {
         fontSize: '30px',
         color: '#000000',
+        align: 'center',
       },
     });
     const sizer = this.rexUI.add.sizer({

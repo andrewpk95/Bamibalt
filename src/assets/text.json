@@ -11,11 +11,29 @@
     "TitleScene_Description": {
         "text": "설명"
     },
+    "TitleScene_Mode_Classic": {
+        "text": "모드: 클래식"
+    },
+    "TitleScene_Mode_Extreme": {
+        "text": "모드: 익스트림"
+    },
+    "TitleScene_Mode_Estelle": {
+        "text": "모드: 에스텔"
+    },
+    "TitleScene_Credits": {
+        "text": "CREDITS"
+    },
     "PopupScene_Description_Content1": {
-        "text": "클릭/탭으로 점프/더블 점프!"
+        "text": "클릭/탭으로 점프하여 장애물을 뛰어넘을 수 있어."
     },
     "PopupScene_Description_Content2": {
-        "text": "얼마나 멀리 도망칠 수 있을 까...!"
+        "text": "공중에서 한번 더 뛸 수 있으니 최대한 멀리 도망가보자...!"
+    },
+    "PopupScene_Credits_Content1": {
+        "text": "기획: rOn\n프로그래밍: rOn\n아트: rOn\n음악: rOn\n"
+    },
+    "PopupScene_Credits_Content2": {
+        "text": "캐릭터:\n바미코 (플레이어): @nanju_bami\n유리 (추적자): @maze_wry\n에스텔 (비행기): @glacial_candela"
     },
     "ResultScene_Title_Normal": {
         "text": "나랑 즐거운 시간 보내자~"

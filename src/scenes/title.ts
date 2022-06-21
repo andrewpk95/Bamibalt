@@ -1,3 +1,4 @@
+import CreditButton from 'src/components/buttons/creditButton';
 import DescriptionButton from 'src/components/buttons/descriptionButton';
 import MuteButton from 'src/components/buttons/muteButton';
 import StartButton from 'src/components/buttons/startButton';
@@ -44,6 +45,7 @@ export default class TitleScene extends BaseScene {
     const muteButton = new MuteButton(this, {
       muteColor: 0xaaaaaa, tintColor: 0x444444,
     });
+    const creditButton = new CreditButton(this);
 
     this.rexUI.add.anchor(titleScreen, {
       x: 'center',
@@ -56,6 +58,10 @@ export default class TitleScene extends BaseScene {
     this.rexUI.add.anchor(muteButton, {
       right: '100%-100',
       top: '0%+100',
+    });
+    this.rexUI.add.anchor(creditButton, {
+      right: '100%-50',
+      bottom: '100%-50',
     });
     this.rexUI.add.anchor(titleText, {
       x: 'center',

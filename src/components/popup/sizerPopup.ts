@@ -36,7 +36,7 @@ export default abstract class SizerPopup<TOptions extends BasePopupOptions> exte
       .setVisible(true)
       .layout();
     if (this.transition) {
-      this.sizer.popUp(200);
+      this.sizer.popUp(100);
     }
   }
 

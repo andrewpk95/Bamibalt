@@ -36,7 +36,8 @@ export default class RoundRectangleButton extends BaseButton<RoundRectangleButto
       .add(roundRectangle)
       .add(text, {
         expand: false,
-      });
+      })
+      .layout();
     return roundRectangle;
   }
 
