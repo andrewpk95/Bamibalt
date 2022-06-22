@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import GameSettings from 'src/assets/settings';
 import Difficulty from 'src/components/game/difficulty';
 import { Texture } from 'src/types/image';
+import { GameMode } from 'src/types/mode';
 import { SFX } from 'src/types/sound';
 import ZIndex from 'src/types/zIndex';
 
@@ -20,6 +21,7 @@ const SPLAT_FRAME = 'bamiko_splat_0000';
 export default class Bamiko extends Phaser.GameObjects.Sprite {
   body: Phaser.Physics.Arcade.Body;
   private difficulty: Difficulty;
+  private isExtremeMode: boolean;
 
   private damageTween: Phaser.Tweens.Tween;
   private jumpState: JumpState = JumpState.None;
@@ -71,6 +73,8 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     this.scene.input.on('pointerup', this.stopJumping, this);
     this.scene.events.on('update', this.update, this);
     this.play(RUN_ANIMATION_KEY);
+
+    this.isExtremeMode = this.scene.registry.get('mode') === GameMode.Extreme;
   }
 
   private jump() {
@@ -105,7 +109,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     this.scene.sound.play(SFX.Collision);
     const { minSpeed } = this.difficulty.getDifficultySettings();
 
-    if (this.isDamaged) {
+    if (this.isDamaged || this.isExtremeMode) {
       this.die();
       this.setFrame(OUCH_FRAME);
       this.emit('damagedeath');

@@ -6,9 +6,11 @@ import ObstacleGenerator from 'src/components/game/obstacleGenerator';
 import Yuri from 'src/components/game/yuri';
 import BaseScene from 'src/scenes/base';
 import GameUIScene from 'src/scenes/gameUI';
+import { GameMode } from 'src/types/mode';
 import { SFX } from 'src/types/sound';
 
 export default class GameScene extends BaseScene {
+  private isExtremeMode: boolean = false;
   private targetOffsetX: number;
   private currentScore: number;
   private cameraTween: Phaser.Tweens.Tween;
@@ -31,6 +33,7 @@ export default class GameScene extends BaseScene {
   }
 
   create() {
+    const isExtremeMode = this.registry.get('mode') === GameMode.Extreme;
     const difficulty = new Difficulty(this);
     const bamiko = new Bamiko(this, difficulty);
     const yuri = new Yuri(this, bamiko, difficulty);
@@ -60,6 +63,21 @@ export default class GameScene extends BaseScene {
       this.bamiko.off('damagedeath', this.handleDamageDeath);
       this.bamiko.off('falldeath', this.handleFallDeath);
     });
+
+    this.isExtremeMode = isExtremeMode;
+
+    if (isExtremeMode) {
+      this.time.delayedCall(500, () => {
+        this.yuri.toggleFollow(true);
+        this.musicPlayer.switchToYuriTheme();
+        this.cameraTween = this.tweens.add({
+          targets: this,
+          targetOffsetX: GameSettings.camera.damagedOffsetX,
+          duration: 500,
+          ease: 'Sine.easeInOut',
+        });
+      });
+    }
   }
 
   private handleDamage() {
@@ -93,7 +111,7 @@ export default class GameScene extends BaseScene {
     this.cameras.main.shake(250, 0.01, true);
     this.musicPlayer.stop();
 
-    if (this.bamiko.isDamaged) {
+    if (this.bamiko.isDamaged || this.isExtremeMode) {
       this.catchDeath();
       return;
     }
@@ -122,7 +140,7 @@ export default class GameScene extends BaseScene {
   private handleFallDeath() {
     this.musicPlayer.stop();
 
-    if (this.bamiko.isDamaged) {
+    if (this.bamiko.isDamaged || this.isExtremeMode) {
       this.catchDeath();
       return;
     }

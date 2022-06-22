@@ -27,4 +27,8 @@ export default class TextComponent extends Phaser.GameObjects.Text {
 
     this.scene.add.existing(this);
   }
+
+  public setKey(key: UIKey) {
+    this.setText(getText(key));
+  }
 }

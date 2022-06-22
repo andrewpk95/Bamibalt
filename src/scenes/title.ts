@@ -3,6 +3,7 @@ import DescriptionButton from 'src/components/buttons/descriptionButton';
 import MuteButton from 'src/components/buttons/muteButton';
 import StartButton from 'src/components/buttons/startButton';
 import TextComponent from 'src/components/text';
+import ModeSelector from 'src/components/ui/modeSelector';
 import BaseScene from 'src/scenes/base';
 import { Texture } from 'src/types/image';
 import { Music } from 'src/types/sound';
@@ -10,6 +11,7 @@ import API from 'src/util/api';
 
 export default class TitleScene extends BaseScene {
   private isTitleMusicPlayed: boolean = false;
+  private highScoreText: TextComponent;
 
   constructor() {
     super({
@@ -20,7 +22,7 @@ export default class TitleScene extends BaseScene {
   create() {
     const titleScreen = this.add.image(0, 0, Texture.TitleScreen);
     const highScoreText = new TextComponent(this, {
-      string: `HIGH SCORE: ${API.getHighScore()}`,
+      string: `HIGH SCORE: ${API.getHighScore(this.registry.get('mode'))}`,
       style: {
         color: '#ffffff',
         fontSize: '50px',
@@ -45,6 +47,7 @@ export default class TitleScene extends BaseScene {
       .setOrigin(0.5, 0.5);
     const startButton = new StartButton(this);
     const descriptionButton = new DescriptionButton(this);
+    const modeSelector = new ModeSelector(this);
     const muteButton = new MuteButton(this, {
       muteColor: 0xaaaaaa, tintColor: 0x444444,
     });
@@ -55,6 +58,7 @@ export default class TitleScene extends BaseScene {
     }
 
     this.isTitleMusicPlayed = true;
+    this.highScoreText = highScoreText;
     this.cameras.main.fadeIn(400, 0, 0, 0);
 
     this.rexUI.add.anchor(titleScreen, {
@@ -89,10 +93,19 @@ export default class TitleScene extends BaseScene {
     })
       .add(startButton)
       .add(descriptionButton)
+      .add(modeSelector)
       .layout();
 
+    this.registry.events.on('changedata', this.handleChangeData, this);
     this.events.once('shutdown', () => {
       this.sound.stopByKey(Music.Title);
+      this.registry.events.off('changedata', this.handleChangeData);
     });
+  }
+
+  private handleChangeData(_, key: string) {
+    if (key === 'mode') {
+      this.highScoreText.text = `HIGH SCORE: ${API.getHighScore(this.registry.get('mode'))}`;
+    }
   }
 }

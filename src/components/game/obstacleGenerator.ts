@@ -7,6 +7,7 @@ import BuildingObstacleGroup from 'src/components/game/obstacleGroup/building';
 import GroundObstacleGroup from 'src/components/game/obstacleGroup/ground';
 import PlaneObstacleGroup from 'src/components/game/obstacleGroup/plane';
 import PlatformObstacleGroup from 'src/components/game/obstacleGroup/platform';
+import { GameMode } from 'src/types/mode';
 
 type ObstacleGeneratorOptions = {
   bamiko: Bamiko;
@@ -23,27 +24,73 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene, { bamiko, difficulty }: ObstacleGeneratorOptions) {
     super(scene);
 
-    const groundObstacleGroup = new GroundObstacleGroup(scene, bamiko, difficulty);
-    const boxObstacleGroup = new BoxObstacleGroup(scene, bamiko, difficulty);
-    const buildingObstacleGroup = new BuildingObstacleGroup(scene, bamiko, difficulty);
-    const planeObstacleGroup = new PlaneObstacleGroup(scene, bamiko, difficulty);
-    const platformObstacleGroup = new PlatformObstacleGroup(scene, bamiko, difficulty);
-
     this.bamiko = bamiko;
     this.difficulty = difficulty;
-    this.obstacleGroups = [
-      groundObstacleGroup,
-      boxObstacleGroup,
-      buildingObstacleGroup,
-      planeObstacleGroup,
-      platformObstacleGroup,
-    ];
+    this.obstacleGroups = this.createObstacleGroup();
+    this.scene.events.on('update', this.update, this);
+  }
+
+  private createObstacleGroup() {
+    const groundObstacleGroup = new GroundObstacleGroup(this.scene, this.bamiko, this.difficulty);
+    const boxObstacleGroup = new BoxObstacleGroup(this.scene, this.bamiko, this.difficulty);
+    const buildingObstacleGroup = new BuildingObstacleGroup(this.scene, this.bamiko, this.difficulty);
+    const planeObstacleGroup = new PlaneObstacleGroup(this.scene, this.bamiko, this.difficulty);
+    const platformObstacleGroup = new PlatformObstacleGroup(this.scene, this.bamiko, this.difficulty);
+
+    const currentMode: GameMode = this.scene.registry.get('mode');
 
     // Initial obstacle sequence
     this.spawnObstacle(buildingObstacleGroup, 100);
     this.spawnObstacle(groundObstacleGroup, 800);
 
-    this.scene.events.on('update', this.update, this);
+    switch (currentMode) {
+      case GameMode.Extreme:
+        return [
+          groundObstacleGroup,
+          boxObstacleGroup,
+          boxObstacleGroup,
+          boxObstacleGroup,
+          boxObstacleGroup,
+          buildingObstacleGroup,
+          buildingObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          platformObstacleGroup,
+          platformObstacleGroup,
+          platformObstacleGroup,
+        ];
+      case GameMode.Estelle:
+        return [
+          groundObstacleGroup,
+          boxObstacleGroup,
+          buildingObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          platformObstacleGroup,
+        ];
+      case GameMode.Classic:
+      default:
+        return [
+          groundObstacleGroup,
+          boxObstacleGroup,
+          boxObstacleGroup,
+          buildingObstacleGroup,
+          buildingObstacleGroup,
+          planeObstacleGroup,
+          planeObstacleGroup,
+          platformObstacleGroup,
+        ];
+    }
   }
 
   update(): void {

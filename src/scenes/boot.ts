@@ -1,5 +1,6 @@
 import TextData from 'src/assets/text.json';
 import BaseScene from 'src/scenes/base';
+import { GameMode } from 'src/types/mode';
 
 export default class BootScene extends BaseScene {
   constructor() {
@@ -30,6 +31,7 @@ export default class BootScene extends BaseScene {
   }
 
   create() {
+    this.registry.set('mode', GameMode.Classic);
     this.scene.start('LoadingScene');
   }
 }

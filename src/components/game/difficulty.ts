@@ -28,11 +28,11 @@ export default class Difficulty extends Phaser.GameObjects.Container {
   }
 
   public getDifficultySettings() {
-    return GameSettings.difficulty.levels[this.currentLevel - 1];
+    return GameSettings.difficulty[this.scene.registry.get('mode')].levels[this.currentLevel - 1];
   }
 
   public getMaxLevel() {
-    return GameSettings.difficulty.levels.length;
+    return GameSettings.difficulty[this.scene.registry.get('mode')].levels.length;
   }
 
   destroy(fromScene?: boolean): void {
