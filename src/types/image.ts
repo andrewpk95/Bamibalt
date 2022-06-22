@@ -10,6 +10,7 @@ export enum Texture {
   BuildingBottom = 'buildingbottom',
   BuildingInside = 'buildinginside',
   Sky = 'sky',
+  BGBuildingFront = 'bgbuildingfront',
 }
 
 export enum Frame {

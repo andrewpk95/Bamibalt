@@ -14,6 +14,11 @@ const BACKGROUND_LIST: BackgroundInfo[] = [
     scrollY: 0.1,
     texture: Texture.Sky,
   },
+  {
+    scrollX: 0.5,
+    scrollY: 0.5,
+    texture: Texture.BGBuildingFront,
+  },
 ];
 
 export default class Background extends Phaser.GameObjects.Container {

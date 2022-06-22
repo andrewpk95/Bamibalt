@@ -14,6 +14,7 @@ import BuildingTopImage from 'src/assets/images/building_top.png';
 import BuildingInsideImage from 'src/assets/images/building_inside.png';
 import BuildingBottomImage from 'src/assets/images/building_bottom.png';
 import SkyImage from 'src/assets/images/sky.png';
+import BGBuildingFrontImage from 'src/assets/images/bg_building_front.png';
 
 import TitleMusic from 'src/assets/sounds/Title_Theme.mp3';
 import BamibaltMusic from 'src/assets/sounds/Bamibalt_Theme.mp3';
@@ -63,6 +64,7 @@ export default class LoadingScene extends BaseScene {
     this.load.image(Texture.BuildingInside, BuildingInsideImage);
     this.load.image(Texture.BuildingBottom, BuildingBottomImage);
     this.load.image(Texture.Sky, SkyImage);
+    this.load.image(Texture.BGBuildingFront, BGBuildingFrontImage);
 
     this.load.audio(Music.Title, TitleMusic);
     this.load.audio(Music.Bamibalt, BamibaltMusic);

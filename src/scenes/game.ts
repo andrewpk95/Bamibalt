@@ -53,6 +53,7 @@ export default class GameScene extends BaseScene {
     this.musicPlayer = musicPlayer;
 
     this.targetOffsetX = GameSettings.camera.offsetX;
+    this.cameras.main.roundPixels = true;
 
     this.bamiko.on('damaged', this.handleDamage, this);
     this.bamiko.on('recover', this.handleRecover, this);
