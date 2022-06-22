@@ -25,6 +25,7 @@ export default abstract class BaseButton<TOptions> extends OverlapSizer {
   private handlePointerDown() {
     this.onButtonDown();
     this.isPressed = true;
+    this.emit('pressed');
   }
 
   private handlePointerUp() {
@@ -33,6 +34,16 @@ export default abstract class BaseButton<TOptions> extends OverlapSizer {
     }
     this.onButtonUp();
     this.isPressed = false;
+    this.emit('released');
+  }
+
+  public toggle(enabled: boolean) {
+    if (enabled) {
+      this.target.setInteractive();
+    } else {
+      this.target.disableInteractive();
+      this.reset();
+    }
   }
 
   private reset() {
