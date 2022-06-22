@@ -1,4 +1,5 @@
 import GameSettings from 'src/assets/settings';
+import Background from 'src/components/game/background';
 import Bamiko from 'src/components/game/bamiko';
 import Difficulty from 'src/components/game/difficulty';
 import MusicPlayer from 'src/components/game/musicPlayer';
@@ -15,6 +16,7 @@ export default class GameScene extends BaseScene {
   private currentScore: number;
   private cameraTween: Phaser.Tweens.Tween;
 
+  private background: Background;
   private difficulty: Difficulty;
   private bamiko: Bamiko;
   private yuri: Yuri;
@@ -34,6 +36,7 @@ export default class GameScene extends BaseScene {
 
   create() {
     const isExtremeMode = this.registry.get('mode') === GameMode.Extreme;
+    const background = new Background(this);
     const difficulty = new Difficulty(this);
     const bamiko = new Bamiko(this, difficulty);
     const yuri = new Yuri(this, bamiko, difficulty);
@@ -42,6 +45,7 @@ export default class GameScene extends BaseScene {
     });
     const musicPlayer = new MusicPlayer(this);
 
+    this.background = background;
     this.difficulty = difficulty;
     this.bamiko = bamiko;
     this.yuri = yuri;
