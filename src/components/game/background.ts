@@ -15,6 +15,11 @@ const BACKGROUND_LIST: BackgroundInfo[] = [
     texture: Texture.Sky,
   },
   {
+    scrollX: 0.25,
+    scrollY: 0.25,
+    texture: Texture.BGBuildingBack,
+  },
+  {
     scrollX: 0.5,
     scrollY: 0.5,
     texture: Texture.BGBuildingFront,
