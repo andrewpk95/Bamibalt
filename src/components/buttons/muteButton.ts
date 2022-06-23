@@ -15,7 +15,7 @@ export default class MuteButton extends BaseButton<MuteButtonOptions> {
   protected createUI({
     muteColor = 0xaaaaaa, tintColor = 0x444444,
   }: MuteButtonOptions): Phaser.GameObjects.GameObject {
-    const image = this.scene.add.image(0, 0, Texture.Object, Frame.Box);
+    const image = this.scene.add.image(0, 0, Texture.Object, Frame.VolumeButtonOn);
 
     this.image = image;
     this.muteColor = muteColor;
@@ -34,6 +34,7 @@ export default class MuteButton extends BaseButton<MuteButtonOptions> {
   }
 
   private updateButton() {
+    this.image.setFrame(this.muted ? Frame.VolumeButtonOff : Frame.VolumeButtonOn);
     this.image.setTint(this.muted ? this.muteColor : 0xffffff);
   }
 

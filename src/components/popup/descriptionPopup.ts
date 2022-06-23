@@ -3,36 +3,25 @@ import { BasePopupOptions } from 'src/components/popup/basePopup';
 import SizerPopup from 'src/components/popup/sizerPopup';
 import TextComponent from 'src/components/text';
 import BaseScene from 'src/scenes/base';
+import { Frame, Texture } from 'src/types/image';
+import { UIKey } from 'src/types/ui';
 
 type DescriptionPopupOptions = BasePopupOptions;
 
 export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions> {
-  private text1: TextComponent;
-  private text2: TextComponent;
+  private texts: TextComponent[];
 
   constructor(scene: BaseScene) {
     super(scene, { transition: true });
   }
 
   protected createContent(): Sizer {
+    this.texts = [];
+
     const background = this.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0xffffff)
       .setStrokeStyle(7, 0xbd2018);
-    const text1 = new TextComponent(this.scene, {
-      key: 'PopupScene_Description_Content1',
-      style: {
-        fontSize: '40px',
-        color: '#000000',
-      },
-    });
-    const image1 = this.scene.add.rectangle(0, 0, 500, 300, 0x000000);
-    const text2 = new TextComponent(this.scene, {
-      key: 'PopupScene_Description_Content2',
-      style: {
-        fontSize: '40px',
-        color: '#000000',
-      },
-    });
-    const image2 = this.scene.add.rectangle(0, 0, 500, 300, 0x000000);
+    const description1 = this.createDescriptionItem('PopupScene_Description_Content1', Frame.Description1);
+    const description2 = this.createDescriptionItem('PopupScene_Description_Content2', Frame.Description2);
     const sizer = this.rexUI.add.sizer({
       orientation: 'vertical',
       space: {
@@ -40,28 +29,55 @@ export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions
         left: 25,
         right: 25,
         bottom: 50,
-        item: 20,
+        item: 30,
       },
     })
       .addBackground(background)
-      .add(text1)
-      .add(image1, {
-        padding: {
-          bottom: 50,
-        },
-      })
-      .add(text2)
-      .add(image2);
-
-    this.text1 = text1;
-    this.text2 = text2;
+      .add(description1)
+      .add(description2)
+      .layout();
 
     return sizer;
   }
 
+  private createDescriptionItem(key: UIKey, frame: Frame) {
+    const text = new TextComponent(this.scene, {
+      key,
+      style: {
+        fontSize: '40px',
+        color: '#000000',
+      },
+    });
+    const image = this.scene.add.image(0, 0, Texture.Object, frame);
+    const tapFinger = this.scene.add.image(0, 0, Texture.Object, Frame.Finger);
+    const imageSizer = this.rexUI.add.overlapSizer()
+      .add(image, {
+        align: 'center',
+        expand: false,
+      })
+      .add(tapFinger, {
+        align: 'center',
+        offsetX: -image.width / 2,
+        offsetY: image.height / 4,
+        expand: false,
+      });
+    const sizer = this.rexUI.add.sizer({
+      orientation: 'vertical',
+      space: {
+        item: 4,
+      },
+    })
+      .add(text)
+      .add(imageSizer);
+
+    this.texts.push(text);
+    return sizer;
+  }
+
   public open(): void {
-    this.text1.updateText();
-    this.text2.updateText();
+    this.texts.forEach((text) => {
+      text.updateText();
+    });
 
     super.open();
   }

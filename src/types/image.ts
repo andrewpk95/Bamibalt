@@ -19,4 +19,9 @@ export enum Frame {
   Window = 'window',
   BillBoard = 'billboard',
   Platform = 'platform',
+  VolumeButtonOn = 'volume_button_on',
+  VolumeButtonOff = 'volume_button_off',
+  Description1 = 'description1',
+  Description2 = 'description2',
+  Finger = 'finger',
 }
