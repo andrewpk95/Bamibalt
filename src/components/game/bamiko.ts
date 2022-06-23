@@ -140,7 +140,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
         if (this.isGrounded) {
           this.play(RUN_ANIMATION_KEY);
         } else {
-          this.play(FALL_FRAME);
+          this.play(JUMP_ANIMATION_KEY);
         }
       },
     });
