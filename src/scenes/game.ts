@@ -7,6 +7,7 @@ import ObstacleGenerator from 'src/components/game/obstacleGenerator';
 import Yuri from 'src/components/game/yuri';
 import BaseScene from 'src/scenes/base';
 import GameUIScene from 'src/scenes/gameUI';
+import PopupScene from 'src/scenes/popup';
 import { GameMode } from 'src/types/mode';
 import { SFX } from 'src/types/sound';
 
@@ -32,6 +33,7 @@ export default class GameScene extends BaseScene {
   init() {
     this.cameras.main.setBackgroundColor(0xbbeeee);
     GameUIScene.instance.toggle(true);
+    PopupScene.instance.setMuteButtonVisible(false);
   }
 
   create() {
@@ -217,6 +219,7 @@ export default class GameScene extends BaseScene {
 
   private gameOver() {
     GameUIScene.instance.toggle(false);
+    PopupScene.instance.setMuteButtonVisible(true);
     this.scene.start('ResultScene', { record: this.currentScore });
   }
 

@@ -83,7 +83,7 @@ export default class LoadingScene extends BaseScene {
       anchor.anchor();
     });
     this.load.once('complete', () => {
-      loadingText.setVisible(false);
+      loadingText.setKey('LoadingScene_Ready');
     });
   }
 

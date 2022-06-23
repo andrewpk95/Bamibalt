@@ -8,6 +8,7 @@ import BootScene from 'src/scenes/boot';
 import LoadingScene from 'src/scenes/loading';
 import TitleScene from 'src/scenes/title';
 import ResultScene from 'src/scenes/result';
+import IntroScene from 'src/scenes/intro';
 
 function launchGame() {
   const config: Phaser.Types.Core.GameConfig = {
@@ -23,7 +24,7 @@ function launchGame() {
         gravity: { y: 3000 },
       },
     },
-    scene: [BootScene, LoadingScene, TitleScene, GameScene, ResultScene],
+    scene: [BootScene, LoadingScene, IntroScene, TitleScene, GameScene, ResultScene],
     plugins: {
       global: [
         {

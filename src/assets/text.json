@@ -2,8 +2,20 @@
     "LoadingScene_PlayButton": {
         "text": "PLAY"
     },
+    "LoadingScene_Ready": {
+        "text": "로딩 완료!"
+    },
+    "IntroScene_Content1": {
+        "text": "본 게임은 바미코 오너의 생일에 맞춰\n @Nanju_Bami, @maze_wry, @Glaciei_Candela 님의 \n오리지널 캐릭터들로 제작되었습니다.\n캐릭터들의 저작권은 각 분들께 있으니 주의 바랍니다."
+    },
+    "IntroScene_Content2": {
+        "text": "Runelight Entertainment presents"
+    },
     "TitleScene_Title": {
         "text": "BAMIBALT"
+    },
+    "TitleScene_Continue": {
+        "text": "클릭/탭하여 시작하세요"
     },
     "TitleScene_Start": {
         "text": "시작"
@@ -30,7 +42,7 @@
         "text": "공중에서 한번 더 뛸 수 있으니 최대한 멀리 도망가보자...!"
     },
     "PopupScene_Credits_Content1": {
-        "text": "기획: rOn\n프로그래밍: rOn\n아트: rOn\n음악: rOn\n"
+        "text": "제작:\n기획: rOn\n프로그래밍: rOn\n아트: rOn\n음악: rOn\n"
     },
     "PopupScene_Credits_Content2": {
         "text": "캐릭터:\n바미코 (플레이어): @Nanju_Bami\n유리 (추적자): @maze_wry\n에스텔 (비행기): @Glaciei_Candela"

@@ -8,6 +8,10 @@ type BackgroundInfo = {
   frame?: string;
 };
 
+type BackgroundItem = BackgroundInfo & {
+  tileSprite: Phaser.GameObjects.TileSprite;
+};
+
 const BACKGROUND_LIST: BackgroundInfo[] = [
   {
     scrollX: 0.1,
@@ -27,7 +31,7 @@ const BACKGROUND_LIST: BackgroundInfo[] = [
 ];
 
 export default class Background extends Phaser.GameObjects.Container {
-  private backgrounds: (BackgroundInfo & { tileSprite: Phaser.GameObjects.TileSprite })[] = [];
+  private backgrounds: BackgroundItem[] = [];
 
   constructor(scene: Phaser.Scene) {
     super(scene);
