@@ -18,18 +18,18 @@ export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions
   protected createContent(): Sizer {
     this.texts = [];
 
-    const background = this.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0xffffff)
-      .setStrokeStyle(7, 0xbd2018);
+    const background = this.rexUI.add.roundRectangle(0, 0, 0, 0, 50, 0xffffff)
+      .setStrokeStyle(10, 0xbd2018);
     const description1 = this.createDescriptionItem('PopupScene_Description_Content1', Frame.Description1);
     const description2 = this.createDescriptionItem('PopupScene_Description_Content2', Frame.Description2);
     const sizer = this.rexUI.add.sizer({
       orientation: 'vertical',
       space: {
         top: 50,
-        left: 25,
-        right: 25,
+        left: 50,
+        right: 50,
         bottom: 50,
-        item: 30,
+        item: 40,
       },
     })
       .addBackground(background)
@@ -45,7 +45,7 @@ export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions
       key,
       style: {
         fontSize: '40px',
-        color: '#000000',
+        color: '#660000',
       },
     });
     const image = this.scene.add.image(0, 0, Texture.Object, frame);
@@ -64,7 +64,7 @@ export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions
     const sizer = this.rexUI.add.sizer({
       orientation: 'vertical',
       space: {
-        item: 4,
+        item: 10,
       },
     })
       .add(text)

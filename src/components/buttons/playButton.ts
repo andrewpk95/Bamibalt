@@ -4,14 +4,19 @@ import BaseScene from 'src/scenes/base';
 export default class PlayButton extends RoundRectangleButton {
   constructor(scene: BaseScene) {
     super(scene, {
-      width: 200,
-      height: 100,
-      radius: 10,
+      width: 280,
+      height: 110,
+      radius: 55,
       key: 'LoadingScene_PlayButton',
       style: {
-        fontSize: '50px',
-        color: '#000000',
+        fontSize: '55px',
+        color: '#ffffff',
+        stroke: '#660000',
+        strokeThickness: 11,
       },
+      color: 0xbd2018,
+      strokeColor: 0xffffff,
+      strokeThickness: 7,
     });
   }
 

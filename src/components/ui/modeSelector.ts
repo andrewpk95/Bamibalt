@@ -28,19 +28,19 @@ export default class ModeSelector extends Sizer {
 
   private initializeComponents() {
     const leftArrowButton = new ArrowButton(this.scene as BaseScene, {
-      width: 80,
+      width: 70,
       height: 80,
       direction: 'left',
     });
     const currentModeUI = this.createCurrentModeUI();
     const rightArrowButton = new ArrowButton(this.scene as BaseScene, {
-      width: 80,
+      width: 70,
       height: 80,
       direction: 'right',
     });
 
-    leftArrowButton.on('pressed', this.handleLeftArrowPressed, this);
-    rightArrowButton.on('pressed', this.handleRightArrowPressed, this);
+    leftArrowButton.on('released', this.handleLeftArrowPressed, this);
+    rightArrowButton.on('released', this.handleRightArrowPressed, this);
 
     this.leftArrowButton = leftArrowButton;
     this.rightArrowButton = rightArrowButton;
@@ -53,13 +53,13 @@ export default class ModeSelector extends Sizer {
   }
 
   private createCurrentModeUI() {
-    const background = this.rexUI.add.roundRectangle(0, 0, 280, 100, 10, 0xffffff)
-      .setStrokeStyle(5, 0xbd2018);
+    const background = this.rexUI.add.roundRectangle(0, 0, 280, 90, 30, 0xffffff)
+      .setStrokeStyle(7, 0xbd2018);
     const text = new TextComponent(this.scene, {
       key: getModeText(this.scene.registry.get('mode')),
       style: {
         fontSize: '40px',
-        color: '#000000',
+        color: '#660000',
         align: 'center',
       },
     });

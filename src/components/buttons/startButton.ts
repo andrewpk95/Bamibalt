@@ -4,14 +4,19 @@ import BaseScene from 'src/scenes/base';
 export default class StartButton extends RoundRectangleButton {
   constructor(scene: BaseScene) {
     super(scene, {
-      width: 200,
-      height: 100,
-      radius: 10,
+      width: 260,
+      height: 110,
+      radius: 55,
       key: 'TitleScene_Start',
       style: {
-        fontSize: '50px',
-        color: '#000000',
+        fontSize: '65px',
+        color: '#ffffff',
+        stroke: '#660000',
+        strokeThickness: 13,
       },
+      color: 0xbd2018,
+      strokeColor: 0xffffff,
+      strokeThickness: 7,
     });
   }
 

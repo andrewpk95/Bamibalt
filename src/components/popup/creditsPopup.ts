@@ -15,13 +15,13 @@ export default class CreditsPopup extends SizerPopup<CreditsPopupOptions> {
   }
 
   protected createContent(): Sizer {
-    const background = this.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0xffffff)
-      .setStrokeStyle(7, 0xbd2018);
+    const background = this.rexUI.add.roundRectangle(0, 0, 0, 0, 50, 0xffffff)
+      .setStrokeStyle(10, 0xbd2018);
     const text1 = new TextComponent(this.scene, {
       key: 'PopupScene_Credits_Content1',
       style: {
         fontSize: '40px',
-        color: '#000000',
+        color: '#660000',
         align: 'center',
       },
     });
@@ -29,7 +29,7 @@ export default class CreditsPopup extends SizerPopup<CreditsPopupOptions> {
       key: 'PopupScene_Credits_Content2',
       style: {
         fontSize: '40px',
-        color: '#000000',
+        color: '#660000',
         align: 'center',
       },
     });
@@ -37,10 +37,10 @@ export default class CreditsPopup extends SizerPopup<CreditsPopupOptions> {
       orientation: 'vertical',
       space: {
         top: 50,
-        left: 25,
-        right: 25,
+        left: 50,
+        right: 50,
         bottom: 50,
-        item: 20,
+        item: 40,
       },
     })
       .addBackground(background)
