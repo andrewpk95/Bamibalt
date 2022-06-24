@@ -20,7 +20,7 @@ class APISingleton {
     const rawSaveData = window.localStorage.getItem(LOCAL_STORAGE_KEY);
 
     if (!rawSaveData) {
-      return 0;
+      return DEFAULT_HIGH_SCORE_MAP;
     }
 
     const highScoreMap: HighScoreMap = JSON.parse(rawSaveData);
@@ -29,13 +29,7 @@ class APISingleton {
   }
 
   public getHighScore(mode: GameMode) {
-    const rawSaveData = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-
-    if (!rawSaveData) {
-      return 0;
-    }
-
-    const highScoreMap: HighScoreMap = JSON.parse(rawSaveData);
+    const highScoreMap = this.getHighScoreMap();
     const highScore = highScoreMap[mode] ?? 0;
 
     return highScore;
