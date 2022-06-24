@@ -6,7 +6,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config ./config/webpack.config.js",
     "start:production": "cross-env NODE_ENV=production webpack serve --config ./config/webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.js"
+    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -15,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andrewpk95/Bamibalt/issues"
+    "url": "https://andrewpk95.github.io/Bamibalt"
   },
   "homepage": "https://github.com/andrewpk95/Bamibalt#readme",
   "devDependencies": {
@@ -34,6 +36,7 @@
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "sass": "^1.52.1",

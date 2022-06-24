@@ -14,7 +14,6 @@ enum JumpState {
 
 const RUN_ANIMATION_KEY = 'bamiko_run_';
 const JUMP_ANIMATION_KEY = 'bamiko_jump_';
-const FALL_FRAME = 'bamiko_jump_0002';
 const OUCH_FRAME = 'bamiko_ouch_0000';
 const SPLAT_FRAME = 'bamiko_splat_0000';
 
