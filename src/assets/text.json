@@ -1,6 +1,9 @@
 {
+    "LoadingScene_Loading": {
+        "text": "{0}%"
+    },
     "LoadingScene_PlayButton": {
-        "text": "PLAY"
+        "text": "PLAY!"
     },
     "LoadingScene_Ready": {
         "text": "로딩 완료!"
@@ -21,7 +24,7 @@
         "text": "시작"
     },
     "TitleScene_Description": {
-        "text": "설명"
+        "text": "게임 설명"
     },
     "TitleScene_Mode_Classic": {
         "text": "모드: 클래식"
@@ -31,6 +34,9 @@
     },
     "TitleScene_Mode_Estelle": {
         "text": "모드: 에스텔"
+    },
+    "TitleScene_Highscore": {
+        "text": "최고점수: {0}"
     },
     "TitleScene_Credits": {
         "text": "CREDITS"

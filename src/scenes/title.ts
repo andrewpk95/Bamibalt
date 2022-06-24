@@ -4,6 +4,7 @@ import DescriptionButton from 'src/components/buttons/descriptionButton';
 import StartButton from 'src/components/buttons/startButton';
 import TextComponent from 'src/components/text';
 import ModeSelector from 'src/components/ui/modeSelector';
+import TitleText from 'src/components/ui/titleText';
 import BaseScene from 'src/scenes/base';
 import { Texture } from 'src/types/image';
 import { Music } from 'src/types/sound';
@@ -33,7 +34,8 @@ export default class TitleScene extends BaseScene {
       },
     }).setOrigin(0.5, 0.5);
     const highScoreText = new TextComponent(this, {
-      string: `HIGH SCORE: ${API.getHighScore(this.registry.get('mode'))}`,
+      key: 'TitleScene_Highscore',
+      parameters: { 0: API.getHighScore(this.registry.get('mode')) },
       style: {
         color: '#ffffff',
         fontSize: '50px',
@@ -41,27 +43,7 @@ export default class TitleScene extends BaseScene {
         strokeThickness: 6,
       },
     });
-    const titleText = new TextComponent(this, {
-      key: 'TitleScene_Title',
-      style: {
-        color: '#ffffff',
-        fontSize: '180px',
-        stroke: '#000000',
-        strokeThickness: 20,
-        shadow: {
-          stroke: true,
-          color: '#000000aa',
-          blur: 10,
-          offsetY: 10,
-        },
-        padding: {
-          left: 10,
-          right: 10,
-          bottom: 10,
-        },
-      },
-    })
-      .setOrigin(0.5, 0.5);
+    const titleText = new TitleText(this);
     const startButton = new StartButton(this);
     const descriptionButton = new DescriptionButton(this);
     const modeSelector = new ModeSelector(this);
@@ -98,7 +80,7 @@ export default class TitleScene extends BaseScene {
       })
       .add(centerUISizer, {
         align: 'center',
-        offsetY: 175,
+        offsetY: 300,
         expand: false,
       })
       .setVisible(false)
@@ -118,7 +100,7 @@ export default class TitleScene extends BaseScene {
     });
     this.rexUI.add.anchor(tapToStart, {
       x: 'center',
-      y: '65%',
+      y: '75%',
     });
 
     if (this.isFirstTime) {
@@ -167,7 +149,7 @@ export default class TitleScene extends BaseScene {
 
   private handleChangeData(_, key: string) {
     if (key === 'mode') {
-      this.highScoreText.text = `HIGH SCORE: ${API.getHighScore(this.registry.get('mode'))}`;
+      this.highScoreText.setParameters({ 0: API.getHighScore(this.registry.get('mode')) });
     }
   }
 }

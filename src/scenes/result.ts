@@ -44,7 +44,8 @@ export default class ResultScene extends BaseScene {
       },
     });
     const contentText = new TextComponent(this, {
-      string: `${score}m`,
+      key: 'ResultScene_Score',
+      parameters: { 0: score },
       style: {
         fontSize: '80px',
         stroke: '#000000',

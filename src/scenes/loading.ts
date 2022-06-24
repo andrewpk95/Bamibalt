@@ -44,6 +44,8 @@ export default class LoadingScene extends BaseScene {
 
   preload() {
     const loadingText = new TextComponent(this, {
+      key: 'LoadingScene_Loading',
+      parameters: { 0: 0 },
       style: {
         fontSize: '50px',
         color: '#ffffff',
@@ -79,7 +81,7 @@ export default class LoadingScene extends BaseScene {
     this.load.audio(SFX.WindowCrash, WindowBreakSound);
 
     this.load.on('progress', (value: number) => {
-      loadingText.setText(`${Math.round(value * 100)}%`);
+      loadingText.setParameters({ 0: Math.round(value * 100) });
       anchor.anchor();
     });
     this.load.once('complete', () => {
