@@ -98,7 +98,7 @@ export default class ObstacleGenerator extends Phaser.GameObjects.Container {
       const randomObstacleGroup = Phaser.Math.RND.pick(this.obstacleGroups);
 
       this.currentObstacleY += Phaser.Math.Between(1, 4) * 50 * Phaser.Math.RND.sign();
-      this.currentObstacleY = Phaser.Math.Clamp(this.currentObstacleY, 200, 1000);
+      this.currentObstacleY = Phaser.Math.Clamp(this.currentObstacleY, 400, 1000);
 
       this.spawnObstacle(randomObstacleGroup);
     }

@@ -120,7 +120,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
       targets: this,
       scale: 1,
       duration: 50,
-      repeat: 5,
+      repeat: 8,
       yoyo: true,
       onStart: () => {
         this.stop();
@@ -179,6 +179,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     const { maxSpeed, acceleration } = this.difficulty.getDifficultySettings();
 
     if (this.body.position.y > this.scene.scale.gameSize.height + this.body.height) {
+      this.scene.sound.play(SFX.Fall);
       this.die();
       this.emit('falldeath');
       return;

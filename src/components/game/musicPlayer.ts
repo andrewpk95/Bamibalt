@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { GameMode } from 'src/types/mode';
 import { Music } from 'src/types/sound';
 
 export default class MusicPlayer extends Phaser.GameObjects.Container {
@@ -17,7 +18,9 @@ export default class MusicPlayer extends Phaser.GameObjects.Container {
   }
 
   private initializeComponents() {
-    this.bamibalt = this.scene.sound.add(Music.Bamibalt, { loop: true });
+    const isEstelleMode = this.scene.registry.get('mode') === GameMode.Estelle;
+
+    this.bamibalt = this.scene.sound.add(isEstelleMode ? Music.Estelle : Music.Bamibalt, { loop: true });
     this.yuriTheme = this.scene.sound.add(Music.Yuri, { loop: true, volume: 0 });
   }
 

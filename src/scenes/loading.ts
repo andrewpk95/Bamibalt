@@ -20,12 +20,19 @@ import BGBuildingBackImage from 'src/assets/images/bg_building_back.png';
 import TitleMusic from 'src/assets/sounds/Title_Theme.mp3';
 import BamibaltMusic from 'src/assets/sounds/Bamibalt_Theme.mp3';
 import YuriMusic from 'src/assets/sounds/Yuri_Mini_Theme.mp3';
+import EstelleMusic from 'src/assets/sounds/Estelle_Mini_Theme.mp3';
 import GameOverMusic from 'src/assets/sounds/GameOver_Theme.mp3';
 import HitSound from 'src/assets/sounds/hit.mp3';
 import JumpSound from 'src/assets/sounds/jump.mp3';
 import LandSound from 'src/assets/sounds/land.mp3';
 import SplatSound from 'src/assets/sounds/splat.mp3';
 import WindowBreakSound from 'src/assets/sounds/window_break.mp3';
+import PlaneSound from 'src/assets/sounds/plane.mp3';
+import FallSound from 'src/assets/sounds/fall.mp3';
+import WarningSound from 'src/assets/sounds/warning.mp3';
+import ButtonClickSound from 'src/assets/sounds/click.mp3';
+import SelectSound from 'src/assets/sounds/select.mp3';
+import RunAwaySound from 'src/assets/sounds/runaway.mp3';
 
 import PlayButton from 'src/components/buttons/playButton';
 import BaseScene from 'src/scenes/base';
@@ -73,12 +80,19 @@ export default class LoadingScene extends BaseScene {
     this.load.audio(Music.Title, TitleMusic);
     this.load.audio(Music.Bamibalt, BamibaltMusic);
     this.load.audio(Music.Yuri, YuriMusic);
+    this.load.audio(Music.Estelle, EstelleMusic);
     this.load.audio(Music.GameOver, GameOverMusic);
     this.load.audio(SFX.Collision, HitSound);
     this.load.audio(SFX.Jump, JumpSound);
     this.load.audio(SFX.Land, LandSound);
     this.load.audio(SFX.Splat, SplatSound);
     this.load.audio(SFX.WindowCrash, WindowBreakSound);
+    this.load.audio(SFX.Plane, PlaneSound);
+    this.load.audio(SFX.Fall, FallSound);
+    this.load.audio(SFX.Warning, WarningSound);
+    this.load.audio(SFX.ButtonClick, ButtonClickSound);
+    this.load.audio(SFX.Select, SelectSound);
+    this.load.audio(SFX.RunAway, RunAwaySound);
 
     this.load.on('progress', (value: number) => {
       loadingText.setParameters({ 0: Math.round(value * 100) });

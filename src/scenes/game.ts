@@ -91,6 +91,7 @@ export default class GameScene extends BaseScene {
     this.yuri.toggleFollow(true);
     this.musicPlayer.switchToYuriTheme();
     this.cameras.main.shake(250, 0.01, true);
+    this.sound.play(SFX.Warning, { delay: 0.25 });
     this.cameraTween?.stop();
     this.cameraTween = this.tweens.add({
       targets: this,

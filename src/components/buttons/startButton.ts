@@ -1,5 +1,6 @@
 import RoundRectangleButton from 'src/components/buttons/roundRectangleButton';
 import BaseScene from 'src/scenes/base';
+import { SFX } from 'src/types/sound';
 
 export default class StartButton extends RoundRectangleButton {
   constructor(scene: BaseScene) {
@@ -22,6 +23,7 @@ export default class StartButton extends RoundRectangleButton {
 
   protected onButtonUp(): void {
     super.onButtonUp();
+    this.scene.sound.play(SFX.RunAway);
     this.scene.input.mouse.enabled = false;
     this.scene.cameras.main.fadeOut(400, 0, 0, 0);
     this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {

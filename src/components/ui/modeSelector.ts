@@ -4,6 +4,7 @@ import BaseScene from 'src/scenes/base';
 import ArrowButton from 'src/components/buttons/arrowButton';
 import { GameMode, getModeText } from 'src/types/mode';
 import TextComponent from 'src/components/text';
+import { SFX } from 'src/types/sound';
 
 export default class ModeSelector extends Sizer {
   protected rexUI: RexUIPlugin;
@@ -83,6 +84,7 @@ export default class ModeSelector extends Sizer {
     const nextMode = (numModes + currentMode - 1) % numModes;
 
     this.scene.registry.set('mode', nextMode);
+    this.scene.sound.play(SFX.ButtonClick);
   }
 
   private handleRightArrowPressed() {
@@ -91,6 +93,7 @@ export default class ModeSelector extends Sizer {
     const nextMode = (numModes + currentMode + 1) % numModes;
 
     this.scene.registry.set('mode', nextMode);
+    this.scene.sound.play(SFX.ButtonClick);
   }
 
   private handleChangeData(_, key: string, value: GameMode) {

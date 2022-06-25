@@ -1,5 +1,6 @@
 import BaseObstacle from 'src/components/game/obstacles/base';
 import { Texture } from 'src/types/image';
+import { SFX } from 'src/types/sound';
 import ZIndex from 'src/types/zIndex';
 
 const FLY_ANIMATION_KEY = 'estelle_fly_';
@@ -60,6 +61,7 @@ export default class PlaneObstacle extends BaseObstacle {
     }
 
     if (this.x < this.bamiko.body.position.x + this.scene.scale.gameSize.width) {
+      this.scene.sound.play(SFX.Plane);
       this.timeline = this.scene.tweens.createTimeline()
         .add({
           targets: this,
@@ -86,9 +88,9 @@ export default class PlaneObstacle extends BaseObstacle {
   }
 
   kill(): this {
-    super.kill();
     this.timeline?.stop();
     this.stop();
+    super.kill();
 
     return this;
   }

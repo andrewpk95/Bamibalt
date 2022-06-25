@@ -7,7 +7,7 @@ import ModeSelector from 'src/components/ui/modeSelector';
 import TitleText from 'src/components/ui/titleText';
 import BaseScene from 'src/scenes/base';
 import { Texture } from 'src/types/image';
-import { Music } from 'src/types/sound';
+import { Music, SFX } from 'src/types/sound';
 import API from 'src/util/api';
 
 export default class TitleScene extends BaseScene {
@@ -103,8 +103,9 @@ export default class TitleScene extends BaseScene {
       y: '75%',
     });
 
+    this.sound.play(Music.Title, { loop: true });
+
     if (this.isFirstTime) {
-      this.sound.play(Music.Title);
       this.input.once('pointerdown', this.handleTapToStart, this);
       this.tweens.add({
         targets: tapToStart,
@@ -116,7 +117,8 @@ export default class TitleScene extends BaseScene {
       });
       this.isFirstTime = false;
     } else {
-      this.handleTapToStart();
+      this.tapToStart.setVisible(false);
+      this.uiSizer.setVisible(true);
     }
 
     this.registry.events.on('changedata', this.handleChangeData, this);
@@ -145,6 +147,7 @@ export default class TitleScene extends BaseScene {
   private handleTapToStart() {
     this.tapToStart.setVisible(false);
     this.uiSizer.setVisible(true);
+    this.sound.play(SFX.Select);
   }
 
   private handleChangeData(_, key: string) {
