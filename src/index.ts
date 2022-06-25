@@ -26,6 +26,8 @@ function launchGame() {
       },
     },
     scene: [BootScene, LoadingScene, IntroScene, TitleScene, GameScene, ResultScene],
+    title: 'BAMIBALT',
+    url: 'https://github.com/andrewpk95/Bamibalt',
     plugins: {
       global: [
         {
