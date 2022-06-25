@@ -30,6 +30,9 @@ export default abstract class BaseObstacle extends Phaser.GameObjects.Sprite imp
   handleUpdate = () => this.update();
 
   kill(): this {
+    if (!this.active) {
+      return this;
+    }
     this.scene.events.off('update', this.handleUpdate);
     this.scene.physics.world.remove(this.body);
     this.setActive(false);
@@ -39,6 +42,9 @@ export default abstract class BaseObstacle extends Phaser.GameObjects.Sprite imp
   }
 
   reset(x: number, y: number, config?: any): this {
+    if (this.active) {
+      return this;
+    }
     this.setPosition(x, y);
     this.setActive(true);
     this.setVisible(true);

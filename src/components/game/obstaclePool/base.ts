@@ -28,6 +28,7 @@ export default abstract class BaseObstaclePool<T extends BaseObstacle> extends P
 
   public return(object: T) {
     super.return(object);
+    object.removeAllListeners('expired');
     this.group.remove(object);
   }
 }
