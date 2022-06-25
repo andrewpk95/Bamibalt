@@ -86,7 +86,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     } else if (this.hasDoubleJump) {
       this.jumpState = JumpState.DoubleJumping;
       this.hasDoubleJump = false;
-      this.scene.sound.play(SFX.Jump, { detune: 300 });
+      this.scene.sound.play(SFX.Jump, { detune: 500 });
     } else {
       return;
     }

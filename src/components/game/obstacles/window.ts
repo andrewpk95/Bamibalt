@@ -35,7 +35,10 @@ export default class WindowObstacle extends BaseObstacle {
       return;
     }
 
-    this.scene.sound.play(SFX.WindowCrash);
+    this.scene.sound.play(SFX.WindowCrash, {
+      volume: Phaser.Math.RND.realInRange(0.5, 0.75),
+      detune: Phaser.Math.Between(-2, 4) * 50,
+    });
     this.setVisible(false);
     this.emitter.setEmitZone({ type: 'random', source: this.getBounds() });
     this.emitter.setSpeed({ min: speed, max: speed * 2 });

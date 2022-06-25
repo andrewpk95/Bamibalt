@@ -8,6 +8,7 @@ const HURT_FRAME = 'estelle_hurt_0000';
 
 export default class PlaneObstacle extends BaseObstacle {
   private ground: number;
+  private isAbove: boolean;
   private isFlying: boolean = false;
   private timeline: Phaser.Tweens.Timeline;
 
@@ -63,7 +64,7 @@ export default class PlaneObstacle extends BaseObstacle {
     }
 
     if (this.x < this.bamiko.body.position.x + this.scene.scale.gameSize.width) {
-      this.scene.sound.play(SFX.Plane);
+      this.scene.sound.play(SFX.Plane, { detune: this.isAbove ? 300 : 0 });
       this.timeline = this.scene.tweens.createTimeline()
         .add({
           targets: this,
@@ -97,9 +98,10 @@ export default class PlaneObstacle extends BaseObstacle {
     return this;
   }
 
-  reset(x: number, y: number, ground: number): this {
+  reset(x: number, y: number, { ground, isAbove }): this {
     this.isFlying = false;
     this.ground = ground;
+    this.isAbove = isAbove;
     this.play(FLY_ANIMATION_KEY);
 
     return super.reset(x, y);
