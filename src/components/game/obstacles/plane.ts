@@ -52,9 +52,11 @@ export default class PlaneObstacle extends BaseObstacle {
   }
 
   update(): void {
-    super.update();
     if (!this.bamiko) {
       return;
+    }
+    if (this.bamiko.body.position.x > this.x + this.width + this.scene.scale.gameSize.width) {
+      this.emit('expired');
     }
     if (this.isFlying) {
       return;
