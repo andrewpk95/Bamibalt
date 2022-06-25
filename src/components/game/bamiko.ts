@@ -36,7 +36,7 @@ export default class Bamiko extends Phaser.GameObjects.Sprite {
     if (!this.body) {
       return false;
     }
-    return this.body.touching.down;
+    return this.body.blocked.down;
   }
 
   constructor(scene: Phaser.Scene, difficulty: Difficulty) {
