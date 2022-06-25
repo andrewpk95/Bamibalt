@@ -26,8 +26,6 @@ export default class BootScene extends BaseScene {
       },
       testString,
     });
-
-    this.sound.pauseOnBlur = false;
   }
 
   create() {
