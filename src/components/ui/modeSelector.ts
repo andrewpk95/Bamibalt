@@ -32,12 +32,16 @@ export default class ModeSelector extends Sizer {
       width: 70,
       height: 80,
       direction: 'left',
+      color: 0xbd2018,
+      strokeColor: 0x660000,
     });
     const currentModeUI = this.createCurrentModeUI();
     const rightArrowButton = new ArrowButton(this.scene as BaseScene, {
       width: 70,
       height: 80,
       direction: 'right',
+      color: 0xbd2018,
+      strokeColor: 0x660000,
     });
 
     leftArrowButton.on('released', this.handleLeftArrowPressed, this);

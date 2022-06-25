@@ -9,7 +9,7 @@
         "text": "로딩 완료!"
     },
     "IntroScene_Content1": {
-        "text": "본 게임은 바미코 오너의 생일에 맞춰\n @Nanju_Bami, @maze_wry, @Glaciei_Candela 님의 \n오리지널 캐릭터들로 제작되었습니다.\n캐릭터들의 저작권은 각 분들께 있으니 주의 바랍니다."
+        "text": "본 게임은 바미코 오너분의 생일에 맞춰\n @Nanju_Bami, @maze_wry, @Glaciei_Candela 님의 \n오리지널 캐릭터들로 제작되었습니다.\n캐릭터들의 저작권은 각 분들께 있으니 주의 바랍니다."
     },
     "IntroScene_Content2": {
         "text": "Runelight Entertainment presents"
@@ -21,7 +21,7 @@
         "text": "클릭/탭하여 시작하세요"
     },
     "TitleScene_Start": {
-        "text": "시작"
+        "text": "START!"
     },
     "TitleScene_Description": {
         "text": "게임 설명"
@@ -36,7 +36,7 @@
         "text": "모드: 에스텔"
     },
     "TitleScene_Highscore": {
-        "text": "최고점수: {0}"
+        "text": "최고점수: {0}m"
     },
     "TitleScene_Credits": {
         "text": "CREDITS"
@@ -47,11 +47,17 @@
     "PopupScene_Description_Content2": {
         "text": "공중에서 한번 더 뛸 수 있으니 최대한 멀리 도망가보자...!"
     },
+    "PopupScene_Credits_Title1": {
+        "text": "제작"
+    },
     "PopupScene_Credits_Content1": {
-        "text": "제작:\n기획: rOn\n프로그래밍: rOn\n아트: rOn\n음악: rOn\n"
+        "text": "기획: rOn\n프로그래밍: rOn\n아트: rOn\n음악: rOn\n"
+    },
+    "PopupScene_Credits_Title2": {
+        "text": "캐릭터"
     },
     "PopupScene_Credits_Content2": {
-        "text": "캐릭터:\n바미코 (플레이어): @Nanju_Bami\n유리 (추적자): @maze_wry\n에스텔 (비행기): @Glaciei_Candela"
+        "text": "바미코 (플레이어): @Nanju_Bami\n유리 (추적자): @maze_wry\n에스텔 (비행기): @Glaciei_Candela"
     },
     "ResultScene_Title_Normal": {
         "text": "나랑 즐거운 시간 보내자~"

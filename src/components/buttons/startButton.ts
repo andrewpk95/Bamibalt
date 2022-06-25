@@ -10,10 +10,10 @@ export default class StartButton extends RoundRectangleButton {
       radius: 55,
       key: 'TitleScene_Start',
       style: {
-        fontSize: '65px',
+        fontSize: '50px',
         color: '#ffffff',
         stroke: '#660000',
-        strokeThickness: 13,
+        strokeThickness: 10,
       },
       color: 0xbd2018,
       strokeColor: 0xffffff,

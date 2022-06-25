@@ -45,7 +45,7 @@ export default class DescriptionPopup extends SizerPopup<DescriptionPopupOptions
       key,
       style: {
         fontSize: '40px',
-        color: '#660000',
+        color: '#000000',
       },
     });
     const image = this.scene.add.image(0, 0, Texture.Object, frame);
