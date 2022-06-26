@@ -41,8 +41,12 @@ import PopupScene from 'src/scenes/popup';
 import { Texture } from 'src/types/image';
 import { Music, SFX } from 'src/types/sound';
 import TextComponent from 'src/components/text';
+import ReloadButton from 'src/components/buttons/ReloadButton';
 
 export default class LoadingScene extends BaseScene {
+  private loadingText: TextComponent;
+  private isLoadingFailed: boolean = false;
+
   constructor() {
     super({
       key: 'LoadingScene',
@@ -63,6 +67,19 @@ export default class LoadingScene extends BaseScene {
       y: '100%-200',
     });
 
+    this.loadingText = loadingText;
+    this.loadAssets();
+
+    this.load.on('progress', (value: number) => {
+      loadingText.setParameters({ 0: Math.round(value * 100) });
+      anchor.anchor();
+    });
+    this.load.once('loaderror', () => {
+      this.isLoadingFailed = true;
+    });
+  }
+
+  private loadAssets() {
     this.load.image(Texture.TitleScreen, TitleScreenImage);
     this.load.image(Texture.GameOverScreen, GameOverScreenImage);
     this.load.atlas(Texture.Bamiko, BamikoSpriteSheet, BamikoSpriteAtlas);
@@ -93,17 +110,16 @@ export default class LoadingScene extends BaseScene {
     this.load.audio(SFX.ButtonClick, ButtonClickSound);
     this.load.audio(SFX.Select, SelectSound);
     this.load.audio(SFX.RunAway, RunAwaySound);
-
-    this.load.on('progress', (value: number) => {
-      loadingText.setParameters({ 0: Math.round(value * 100) });
-      anchor.anchor();
-    });
-    this.load.once('complete', () => {
-      loadingText.setKey('LoadingScene_Ready');
-    });
   }
 
   create() {
+    this.load.removeAllListeners();
+
+    if (this.isLoadingFailed) {
+      this.displayErrorPage();
+      return;
+    }
+
     const playButton = new PlayButton(this);
 
     this.rexUI.add.anchor(playButton, {
@@ -111,7 +127,19 @@ export default class LoadingScene extends BaseScene {
       y: '100%-100',
     });
 
+    this.loadingText.setKey('LoadingScene_Ready');
+
     this.scene.add('GameUIScene', GameUIScene, true);
     this.scene.add('PopupScene', PopupScene, true);
+  }
+
+  private displayErrorPage() {
+    const reloadButton = new ReloadButton(this);
+
+    this.rexUI.add.anchor(reloadButton, {
+      x: 'center',
+      y: '100%-100',
+    });
+    this.loadingText.setKey('LoadingScene_Load_Error');
   }
 }
