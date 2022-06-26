@@ -22,10 +22,10 @@ export default class PlayButton extends RoundRectangleButton {
 
   protected onButtonUp(): void {
     super.onButtonUp();
-    this.scene.input.mouse.enabled = false;
+    this.scene.input.manager.enabled = false;
     this.scene.cameras.main.fadeOut(400, 0, 0, 0);
     this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
-      this.scene.input.mouse.enabled = true;
+      this.scene.input.manager.enabled = true;
       this.scene.scene.start('IntroScene');
     });
   }
