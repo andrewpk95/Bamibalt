@@ -24,17 +24,6 @@ export default class BuildingObstacle extends BaseObstacle {
     this.buildingInside = buildingInside;
     this.scene.physics.add.existing(this, true);
     this.scene.physics.add.existing(this.buildingTop, true);
-
-    this.scene.physics.add.collider(this.bamiko, this, (player) => {
-      if (player.body.touching.right) {
-        this.bamiko.splat(this.x);
-      }
-    });
-    this.scene.physics.add.collider(this.bamiko, this.buildingTop, (player) => {
-      if (player.body.touching.right) {
-        this.bamiko.splat(this.x);
-      }
-    });
   }
 
   kill(): this {
