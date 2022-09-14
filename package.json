@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "patch-package",
     "start": "cross-env NODE_ENV=development webpack serve --config ./config/webpack.config.js",
     "start:production": "cross-env NODE_ENV=production webpack serve --config ./config/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "patch:phaser": "npx patch-package phaser"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,7 @@
     "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
+    "patch-package": "^6.4.7",
     "sass": "^1.52.1",
     "sass-loader": "^13.0.0",
     "ts-loader": "^9.3.0",
